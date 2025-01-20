@@ -7,8 +7,11 @@
 
     {% for teacher in teachers %}
         <p>
-            {{ teacher.firstname}} {{ teacher }}
+            <a href={{ path('show_teacher', {'id' : teacher.id}) }}>
+                {{ teacher.firstname}} {{ teacher }}
+            </a>
         </p>
+        
             
     {% endfor %}
 

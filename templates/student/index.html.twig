@@ -8,7 +8,7 @@
     {% for student in students %}
 
         <p>
-            <a href={{ path('show_student', {'id' : student.id})}}>
+            <a href={{ path('show_student', {'id' : student.id}) }}>
                 {{ student.firstname}} {{ student }}
             </a>
         </p>
