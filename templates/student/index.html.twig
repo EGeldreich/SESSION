@@ -3,12 +3,12 @@
 {% block title %}Student List{% endblock %}
 
 {% block body %}
-    <div class="content-container">
+    <div class="breadcrumb breadcrumb-row row">
+        <p><a href="{{ path('app_home')}}">Dashboard</a> > <span class="blue">Students</span>
+        </p>
+    </div>
 
-        <div class="breadcrumb breadcrumb-row row">
-            <p><a href="{{ path('app_home')}}">Dashboard</a> > <span class="blue">Students</span>
-            </p>
-        </div>
+    <div class="content-container">
 
         <h1>Student <span class="blue">List</span></h1>
     

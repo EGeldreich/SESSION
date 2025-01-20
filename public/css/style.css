@@ -48,6 +48,9 @@
 .grey3 {
     color: var(--grey3);
 }
+.black-bg {
+    background-color: var(--black);
+}
 .blue-bg {
     background-color: var(--blue);
 }
@@ -109,6 +112,8 @@ h4, .h4 {
 body {
     font-family: "Nunito", sans-serif;
     font-size: 16px;
+    background-color: var(--black);
+    color: var(--white);
 }
 
 /* GRID LAYOUT ______________________________________________________________________________*/
@@ -127,7 +132,7 @@ body {
     border-right: 1px solid var(--grey3);
 
     & h2 {
-        height: 80px;
+        height: 64px;
         align-items: center;
         justify-content: center;
         border-bottom: 1px solid var(--grey3);
@@ -168,3 +173,14 @@ body {
 
 }
 
+/* MAIN CONTENT ___________________________________________________________________________________ */
+.breadcrumb-row {
+    grid-column: 6 / -1;
+    grid-row: 1;
+    border-bottom: 1px solid var(--grey3);
+}
+.content-container {
+    grid-column: 6 / -1;
+    grid-row: 2 / -1;
+
+}
