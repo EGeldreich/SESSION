@@ -3,9 +3,9 @@
 {% block title %}{{ student }}{% endblock %}
 
 {% block body %}
-    <div class="breadcrumb breadcrumb-row row">
-        <p>
-            <a href="{{ path('app_home')}}">Dashboard</a> > <a href="{{ path('app_student')}}">Students</a> > <span class="blue">{{ student }}</span>
+    <div class="breadcrumb">
+        <p class="row">
+            <a href="{{ path('app_home')}}">Dashboard</a>&nbsp;>&nbsp;<a href="{{ path('app_student')}}">Students</a>&nbsp;>&nbsp;<span class="blue">{{ student }}</span>
         </p>
     </div>
 
