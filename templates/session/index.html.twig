@@ -7,7 +7,9 @@
 
     {% for session in sessions %}
         <p>
-            {{ session }}
+            <a href={{ path('show_session', {'id' : session.id}) }}>
+                {{ session }}
+            </a>
         </p>
         <p>
             {{ session.placesTaken }}/{{ session.place }}

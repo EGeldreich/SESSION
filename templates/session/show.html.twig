@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ session }}{% endblock %}
+
+{% block body %}
+
+    <h1><span class="pink">{{ session }}</span></h1>
+    <a href={{ path('edit_session', {'id' : session.id}) }}>
+        Edit
+    </a>
+
+    <div>
+        <p>
+            Places: {{ session.place }}
+        </p>
+        <p>
+            Students: {{ session.placesTaken }}
+        </p>
+        <p>
+            Start: {{ session.dateStartFormat }}
+        </p>
+        <p>
+            End: {{ session.dateEndFormat }}
+        </p>
+        <p>
+            Formation: {{ session.formation }}
+        </p>    
+    </div>
+
+
+
+    <h2>Lessons</h2>
+
+    {% for program in session.programs %}
+        <div>
+            <p>
+                {{ program.lesson }} -- {{ program.duration }} days
+            </p>
+        </div>
+    {% endfor %}
+
+    <h2>Students</h2>
+
+    {% for student in session.students %}
+        <div>
+            <p>
+                <a href={{ path('show_student', {'id' : student.id}) }}>
+                    {{ student.firstname}} {{ student }}
+                </a>
+            </p>
+            <p>
+                {{ student.citySmall }}
+            </p>
+        </div>
+    {% endfor %}
+
+{% endblock %}
