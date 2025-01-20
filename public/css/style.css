@@ -1,0 +1,170 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: inherit;
+    list-style: none;
+}
+
+
+
+/* VARIABLES */
+:root {
+
+    --white: #EEF0F0;
+    --black: #111315;
+
+    --grey1: #1A1C1E;
+    --grey2: #26282A;
+    --grey3: #303336;
+
+    --green: #63FC9E;
+    --blue: #2E9CFF;
+    --pink: #FF5CE1;
+    --red: #FF495B;
+
+}
+/* UTILITIES */
+.blue {
+    color: var(--blue);
+}
+.pink {
+    color: var(--pink);
+}
+.green {
+    color: var(--green);
+}
+.red {
+    color: var(--red);
+}
+.grey1 {
+    color: var(--grey1);
+}   
+.grey2 {
+    color: var(--grey2);
+}   
+.grey3 {
+    color: var(--grey3);
+}
+.blue-bg {
+    background-color: var(--blue);
+}
+.pink-bg {
+    background-color: var(--pink);
+}
+.green-bg {
+    background-color: var(--green);
+}
+.red-bg {
+    background-color: var(--red);
+}
+.grey1-bg {
+    background-color: var(--grey1);
+}   
+.grey2-bg {
+    background-color: var(--grey2);
+}   
+.grey3-bg {
+    background-color: var(--grey3);
+}
+h1, .h1 {
+    font-family: "Outfit", serif;
+    font-weight: 700;
+    font-size: 30px;
+}
+h2, .h2 {
+    font-family: "Outfit", serif;
+    font-weight: 500;
+    font-size: 27px;
+}
+h3, .h3 {
+    font-family: "Outfit", serif;
+    font-weight: 500;
+    font-size: 24px;
+}
+h4, .h4 {
+    font-family: "Outfit", serif;
+    font-weight: 500;
+    font-size: 21px; 
+}
+.sat18 {
+    font-family: "Nunito", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+}
+.breadcrumb {
+    font-family: "Nunito", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+}
+.row {
+    display: flex;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+}
+body {
+    font-family: "Nunito", sans-serif;
+    font-size: 16px;
+}
+
+/* GRID LAYOUT ______________________________________________________________________________*/
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    grid-template-rows: repeat(auto-fill, 64px);
+    gap: 16px;
+}
+/* SIDEBAR __________________________________________________________________________________*/
+
+.sidebar {
+    grid-column: span 4;
+    height: 100vh;
+    color: var(--white);
+    border-right: 1px solid var(--grey3);
+
+    & h2 {
+        height: 80px;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid var(--grey3);
+    }
+    & nav {
+        padding: 80px 0 0 80px;
+        gap: 40px;
+    }
+
+    & .nav_block {
+        gap: 16px;
+
+        & ul {
+            gap: 8px;
+
+            & a {
+                gap: 16px;
+                align-items: center;
+                padding: 6px 12px;
+                border-radius: 4px;
+                width: fit-content;
+                transition: all 0.2s ease-in-out;
+
+                &:hover {
+                    background-color: var(--grey2);
+                }
+                &.active {
+                    background-color: var(--grey3);
+                }
+            }
+        }
+    }
+
+    & .nav_separator {
+        width: 160px;
+        border-bottom: 1px solid var(--grey3);
+    }
+
+}
+

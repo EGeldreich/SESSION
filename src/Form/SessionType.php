@@ -44,7 +44,7 @@ class SessionType extends AbstractType
             ])
             // ->add('students', EntityType::class, [
             //     'class' => Student::class,
-            //     'choice_label' => 'id',
+            //     'choice_label' => 'name',
             //     'multiple' => true,
             // ])
             ->add('teacher', EntityType::class, [

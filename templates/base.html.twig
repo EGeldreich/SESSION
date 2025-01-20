@@ -4,38 +4,94 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        
         {% block stylesheets %}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/style.css')}}">
         {% endblock %}
 
         {% block javascripts %}
+        <script src="{{ asset('js/script.js')}}" defer></script>
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
-    <body>
-        <header>
-            <nav>
-                <ul>
-                    <li>
-                        <a href={{ path('app_home')}}>Home</a>
-                    </li>
-                    <li>
-                        <a href={{ path('app_student')}}>Student List</a>
-                    </li>
-                    <li>
-                        <a href={{ path('new_student')}}>Add Student</a>
-                    </li>
-                    <li>
-                        <a href={{ path('app_teacher')}}>Teacher List</a>
-                    </li>
-                    <li>
-                        <a href={{ path('app_session')}}>Session List</a>
-                    </li>
-                    <li>
-                        <a href={{ path('new_session')}}>Add Session</a>
-                    </li>
-                </ul>
+    <body class="grid-container">
+        <div class="sidebar grey1-bg column">
+
+            <h2 class="h1 row">
+                <a class="row" href="{{ path('app_home') }}" id="home-link">
+                    Session<span class="blue">Planner</span>
+                </a>
+            </h2>
+
+            <nav class="column">
+                <div class="nav_block column">
+                    <h3>Students</h3>
+                    <ul class="sat18 column">
+                        <li>
+                            <a class="row" href={{ path('app_student')}} id="student-list-link">
+                                <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 11.5H15M1 6.5H15M1 1.5H9" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Student List
+                            </a>
+                        </li>
+                        <li>
+                            <a class="row" href={{ path('new_student')}} id="student-add-link">
+                                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.5 17.9852V9.49995M9.5 9.49995V1.01465M9.5 9.49995H17.9853M9.5 9.49995H1.01469" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Add Student
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav_separator"></div>
+
+                <div class="nav_block column">
+                    <h3>Teachers</h3>
+                    <ul class="sat18 column">
+                        <li>
+                            <a class="row" href={{ path('app_teacher')}} id="teacher-list-link">
+                                <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 11.5H15M1 6.5H15M1 1.5H9" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Teacher List
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav_separator"></div>
+                
+                <div class="nav_block column">
+                    <h3>Sessions</h3>
+                    <ul class="sat18 column">
+                        <li>
+                            <a class="row" href={{ path('app_session')}} id="session-list-link">
+                                <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 11.5H15M1 6.5H15M1 1.5H9" stroke="var(--pink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Session List
+                            </a>
+                        </li>
+                        <li>
+                            <a class="row" href={{ path('new_session')}} id="session-add-link">
+                                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.5 17.9852V9.49995M9.5 9.49995V1.01465M9.5 9.49995H17.9853M9.5 9.49995H1.01469" stroke="var(--pink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Add Session
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </nav>
-        </header>
-        {% block body %}{% endblock %}
+        </div>
+        <main>
+            {% block body %}{% endblock %}
+        </main>
     </body>
 </html>
