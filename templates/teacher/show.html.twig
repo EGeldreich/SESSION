@@ -3,35 +3,43 @@
 {% block title %}{{ teacher }}{% endblock %}
 
 {% block body %}
-
-    <h1>{{ teacher.firstname}} <span class="green">{{ teacher }}</span></h1>
-
-    <div>
-        <p>
-            Name: {{ teacher }}
-        </p>
-        <p>
-            Firstname: {{ teacher.firstname }}
+    <div class="breadcrumb">
+        <p class="row">
+            <a href="{{ path('app_home')}}">Dashboard</a>&nbsp;>&nbsp;<a href="{{ path('app_teacher')}}">Teachers</a>&nbsp;>&nbsp;<span class="green">{{ teacher }}</span>
         </p>
     </div>
 
-    <div>
-        <p>
-            {{ teacher.email }}
-        </p>
-    </div>
-
-    <h2>Sessions</h2>
-
-    {% for session in teacher.sessions %}
+    <div class="content-container">
+        <h1>{{ teacher.firstname}} <span class="green">{{ teacher }}</span></h1>
+    
         <div>
             <p>
-                {{ session }}
+                Name: {{ teacher }}
             </p>
             <p>
-                {{ session.dateStartFormat }}
+                Firstname: {{ teacher.firstname }}
             </p>
         </div>
-    {% endfor %}
+    
+        <div>
+            <p>
+                {{ teacher.email }}
+            </p>
+        </div>
+    
+        <h2>Sessions</h2>
+    
+        {% for session in teacher.sessions %}
+            <div>
+                <p>
+                    {{ session }}
+                </p>
+                <p>
+                    {{ session.dateStartFormat }}
+                </p>
+            </div>
+        {% endfor %}
+
+    </div>
 
 {% endblock %}

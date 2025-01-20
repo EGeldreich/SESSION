@@ -3,16 +3,27 @@
 {% block title %}Teacher List{% endblock %}
 
 {% block body %}
-    <h1>Teacher <span class="green">List</span></h1>
-
-    {% for teacher in teachers %}
-        <p>
-            <a href={{ path('show_teacher', {'id' : teacher.id}) }}>
-                {{ teacher.firstname}} {{ teacher }}
-            </a>
+    <div class="breadcrumb">
+        <p class="row">
+            <a href="{{ path('app_home')}}">Dashboard</a>&nbsp;>&nbsp;<span class="green">Teachers</span>
         </p>
-        
+    </div>
+
+    <div class="content-container">
+
+        <h1>Teacher <span class="green">List</span></h1>
+    
+        {% for teacher in teachers %}
+            <p>
+                <a href={{ path('show_teacher', {'id' : teacher.id}) }}>
+                    {{ teacher.firstname}} {{ teacher }}
+                </a>
+            </p>
             
-    {% endfor %}
+                
+        {% endfor %}
+        
+    </div>
+
 
 {% endblock %}

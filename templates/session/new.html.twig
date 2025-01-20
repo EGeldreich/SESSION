@@ -10,37 +10,46 @@
 
 {% block body %}
 
-    {% if edit %}
-        <h1>Edit Session</h1>
+    <div class="breadcrumb">
+        <p class="row">
+            <a href="{{ path('app_home')}}">Dashboard</a>&nbsp;>&nbsp;<a href="{{ path('app_session')}}">Sessions</a>&nbsp;>&nbsp;<span class="pink">Add Session</span>
+        </p>
+    </div>
+
+    <div class="content-container">
+
+        {% if edit %}
+            <h1>Edit Session</h1>
+            
+        {% else %}
+            <h1>Add Session</h1>
+        {% endif %}
+    
+        {{ form_start(formNewSession) }}
+    
+            <div>
+                {{ form_row(formNewSession.name) }}
+            </div>
+            <div>
+                {{ form_row(formNewSession.place) }}
+            </div>
+            <div>
+                {{ form_row(formNewSession.dateStart) }}
+            </div>
+            <div>
+                {{ form_row(formNewSession.dateEnd) }}
+            </div>
+            <div>
+                {{ form_row(formNewSession.teacher) }}
+            </div>
+            <div>
+                {{ form_row(formNewSession.formation) }}
+            </div>
+    
+            {{ form_row(formNewSession.submit) }}
+    
+        {{ form_end(formNewSession) }}
         
-    {% else %}
-        <h1>Add Session</h1>
-    {% endif %}
-
-    {{ form_start(formNewSession) }}
-
-        <div>
-            {{ form_row(formNewSession.name) }}
-        </div>
-        <div>
-            {{ form_row(formNewSession.place) }}
-        </div>
-        <div>
-            {{ form_row(formNewSession.dateStart) }}
-        </div>
-        <div>
-            {{ form_row(formNewSession.dateEnd) }}
-        </div>
-        <div>
-            {{ form_row(formNewSession.teacher) }}
-        </div>
-        <div>
-            {{ form_row(formNewSession.formation) }}
-        </div>
-
-        {{ form_row(formNewSession.submit) }}
-
-    {{ form_end(formNewSession) }}
-
+    </div>
 
 {% endblock %}
