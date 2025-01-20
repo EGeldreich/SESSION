@@ -88,6 +88,11 @@ class Session
         return $this->dateStart;
     }
 
+    public function getDateStartFormat(): string
+    {
+        return $this->dateStart->format('d-m-Y');
+    }
+
     public function setDateStart(\DateTimeInterface $dateStart): static
     {
         $this->dateStart = $dateStart;
@@ -98,6 +103,11 @@ class Session
     public function getDateEnd(): ?\DateTimeInterface
     {
         return $this->dateEnd;
+    }
+
+    public function getDateEndFormat(): string
+    {
+        return $this->dateEnd->format('d-m-Y');
     }
 
     public function setDateEnd(\DateTimeInterface $dateEnd): static
@@ -186,5 +196,15 @@ class Session
         }
 
         return $this;
+    }
+
+    public function getPlacesTaken(): int
+    {
+        return count($this->getStudents());
+    }
+
+    public function __toString():string
+    {
+        return $this->name;
     }
 }
