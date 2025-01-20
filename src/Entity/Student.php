@@ -160,4 +160,14 @@ class Student
 
         return $this;
     }
+
+    public function getCitySmall(): string
+    {
+        return substr($this->city , 0 , 3);
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 }

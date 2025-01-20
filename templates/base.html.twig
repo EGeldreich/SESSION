@@ -12,6 +12,24 @@
         {% endblock %}
     </head>
     <body>
+        <header>
+            <nav>
+                <ul>
+                    <li>
+                        <a href={{ path('app_home')}}>Home</a>
+                    </li>
+                    <li>
+                        <a href={{ path('app_student')}}>Student List</a>
+                    </li>
+                    <li>
+                        <a href={{ path('app_teacher')}}>Teacher List</a>
+                    </li>
+                    <li>
+                        <a href={{ path('app_session')}}>Session List</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
         {% block body %}{% endblock %}
     </body>
 </html>
