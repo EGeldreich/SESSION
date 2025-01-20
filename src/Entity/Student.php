@@ -82,6 +82,11 @@ class Student
         return $this->dateBirth;
     }
 
+    public function getDateBirthFormat(): string
+    {
+        return $this->dateBirth->format('d-m-Y');
+    }
+
     public function setDateBirth(\DateTimeInterface $dateBirth): static
     {
         $this->dateBirth = $dateBirth;
@@ -164,6 +169,13 @@ class Student
     public function getCitySmall(): string
     {
         return substr($this->city , 0 , 3);
+    }
+
+    public function getAge(): ?string
+    {
+        $now = new \DateTime();
+        $interval = $this->dateBirth->diff($now);
+        return $interval->format("%Y");
     }
 
     public function __toString(): string

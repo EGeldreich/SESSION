@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ student }}{% endblock %}
+
+{% block body %}
+
+    <h1>{{ student.firstname}} <span class="blue">{{ student }}</span></h1>
+
+    <div>
+        <p>
+            Gender: {{ student.gender }}
+        </p>
+        <p>
+            Name: {{ student }}
+        </p>
+        <p>
+            Firstname: {{ student.firstname }}
+        </p>
+        <p>
+            Birthdate: {{ student.dateBirthFormat }}
+        </p>
+        <p>
+            Age: {{ student.age }}
+        </p>
+    </div>
+
+    <div>
+        <p>
+            {{ student.phone }}
+        </p>
+    </div>
+
+    <div>
+        <p>
+            {{ student.email }}
+        </p>
+    </div>
+
+    <div>
+        <p>
+            {{ student.city }}
+        </p>
+    </div>
+
+    <h2>Sessions</h2>
+
+    {% for session in student.sessions %}
+        <div>
+            <p>
+                {{ session }}
+            </p>
+            <p>
+                {{ session.dateStartFormat }}
+            </p>
+        </div>
+    {% endfor %}
+
+{% endblock %}

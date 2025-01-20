@@ -6,8 +6,11 @@
     <h1>Student <span class="blue">List</span></h1>
 
     {% for student in students %}
+
         <p>
-            {{ student.firstname}} {{ student }}
+            <a href={{ path('show_student', {'id' : student.id})}}>
+                {{ student.firstname}} {{ student }}
+            </a>
         </p>
         <p>
             {{ student.citySmall }}
