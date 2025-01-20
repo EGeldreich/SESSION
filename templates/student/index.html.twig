@@ -3,19 +3,26 @@
 {% block title %}Student List{% endblock %}
 
 {% block body %}
-    <h1>Student <span class="blue">List</span></h1>
+    <div class="content-container">
 
-    {% for student in students %}
+        <div class="breadcrumb breadcrumb-row row">
+            <p><a href="{{ path('app_home')}}">Dashboard</a> > <span class="blue">Students</span>
+            </p>
+        </div>
 
-        <p>
-            <a href={{ path('show_student', {'id' : student.id}) }}>
-                {{ student.firstname}} {{ student }}
-            </a>
-        </p>
-        <p>
-            {{ student.citySmall }}
-        </p>
-            
-    {% endfor %}
+        <h1>Student <span class="blue">List</span></h1>
+    
+        {% for student in students %}
+            <p>
+                <a href={{ path('show_student', {'id' : student.id}) }}>
+                    {{ student.firstname}} {{ student }}
+                </a>
+            </p>
+            <p>
+                {{ student.citySmall }}
+            </p>
+        {% endfor %}
+        
+    </div>
 
 {% endblock %}
