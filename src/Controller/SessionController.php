@@ -17,12 +17,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 final class SessionController extends AbstractController
 {
     #[Route('/session', name: 'app_session')]
-    public function index(SessionRepository $sessionRepository): Response
+    public function index(SessionRepository $sr): Response
     {
-        $sessions = $sessionRepository->findBy([], ["dateStart" => "ASC"]);
+        $sessions = $sr->findBy([], ["dateStart" => "ASC"]);
+
+        $finishedSessions = $sr->findFinishedSessions();
+        $ongoingSessions = $sr->findOngoingSessions();
+        $futureSessions = $sr->findFutureSessions();
 
         return $this->render('session/index.html.twig', [
             'sessions' => $sessions,
+            'finishedSessions' => $finishedSessions,
+            'ongoingSessions' => $ongoingSessions,
+            'futureSessions' => $futureSessions,
         ]);
     }
 
@@ -64,7 +71,7 @@ final class SessionController extends AbstractController
     }
 
     #[Route('/session/{id}', name: 'show_session')]
-    public function show(Session $session = null, SessionRepository $sr, Request $request, EntityManagerInterface $entityManager): Response
+    public function show(Session $session = null, SessionRepository $sr): Response
     {
         if(!$session){
             return $this->redirectToRoute('app_session');

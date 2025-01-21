@@ -65,17 +65,15 @@
         </div>
 
         <div id="add-lesson-modal" class="modal">
-            <button class="modal-close">
+            {# <button class="modal-close">
                 Close
             </button>
             <h3>Add Lessons</h3>
-            {% for lesson in nonScheduledLessons %}
-                <div class="lesson-block">
-                    <p>
-                        {{ lesson }}
-                    </p>
-                </div>
-            {% endfor %}
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button type="button" id="add-lesson">Add Lesson</button>
+                <button type="submit">Save</button>
+            {{ form_end(form) }} #}
         </div>
         
     

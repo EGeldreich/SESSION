@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Session;
 use App\Entity\Student;
 use App\Form\StudentType;
+use App\Repository\SessionRepository;
 use App\Repository\StudentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +21,6 @@ final class StudentController extends AbstractController
         $students = $studentRepository->findby([], ["name" => "ASC"]);
 
         return $this->render('student/index.html.twig', [
-            'controller_name' => 'StudentController',
             'students' => $students,
         ]);
     }
@@ -48,10 +48,18 @@ final class StudentController extends AbstractController
         }
 
         return $this->render('student/new.html.twig', [
-            'controller_name' => 'StudentController',
             'formNewStudent' => $form,
             'edit' => $student->getId(),
         ]);
+    }
+
+    #[Route('/student/{id}/delete', name: 'delete_student')]
+    public function delete(Student $student, EntityManagerInterface $entityManager)
+    {
+        $entityManager->remove($student);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_student');
     }
 
     #[Route('/student/{id}/remove/{sessionId}', name: 'remove_student')]
@@ -83,11 +91,16 @@ final class StudentController extends AbstractController
     }
 
     #[Route('/student/{id}', name: 'show_student')]
-    public function show(Student $student): Response
+    public function show(Student $student, SessionRepository $sr): Response
     {
+        $finishedSessions = $sr->findStudentFinishedSessions($student->getId());
+        $ongoingSessions = $sr->findStudentOngoingSessions($student->getId());
+        $futureSessions = $sr->findStudentFutureSessions($student->getId());
         return $this->render('student/show.html.twig', [
-            'controller_name' => 'StudentController',
             'student' => $student,
+            'finishedSessions' => $finishedSessions,
+            'ongoingSessions' => $ongoingSessions,
+            'futureSessions' => $futureSessions,
         ]);
     }
 

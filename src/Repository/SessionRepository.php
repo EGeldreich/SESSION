@@ -87,4 +87,86 @@ class SessionRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    // SESSIONS IN DIFFERENT STATES TIMEWISE __________________________________
+    public function findFinishedSessions(): array
+    {
+        $now = new \DateTime();
+
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.dateEnd < :now')
+            ->setParameter('now', $now)
+            ->orderBy('s.dateEnd', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    public function findOngoingSessions(): array
+    {
+        $now = new \DateTime();
+
+        return $this->createQueryBuilder('s')
+            ->andWhere(':now BETWEEN s.dateStart AND s.dateEnd')
+            ->setParameter('now', $now)
+            ->orderBy('s.dateEnd', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    public function findFutureSessions(): array
+    {
+        $now = new \DateTime();
+
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.dateEnd > :now')
+            ->setParameter('now', $now)
+            ->orderBy('s.dateEnd', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    // SESSIONS RELATED TO EACH STUDENT _______________________________________
+    public function findStudentFinishedSessions($student_id): array
+    {
+        $now = new \DateTime();
+
+        $qb = $this->createQueryBuilder('s')
+            ->leftJoin('s.students', 'st')
+            ->where('st.id = :studentId')
+            ->andWhere('s.dateEnd < :now')
+            ->setParameter('studentId', $student_id)
+            ->setParameter('now', $now)
+            ->orderBy('s.dateEnd', 'ASC')
+            ->getQuery();
+
+        return $qb->getResult();
+    }
+    public function findStudentOngoingSessions($student_id): array
+    {
+        $now = new \DateTime();
+
+        $qb = $this->createQueryBuilder('s')
+            ->leftJoin('s.students', 'st')
+            ->where('st.id = :studentId')
+            ->andWhere(':now BETWEEN s.dateStart AND s.dateEnd')
+            ->setParameter('studentId', $student_id)
+            ->setParameter('now', $now)
+            ->orderBy('s.dateEnd', 'ASC')
+            ->getQuery();
+
+        return $qb->getResult();
+    }
+    public function findStudentFutureSessions($student_id): array
+    {
+        $now = new \DateTime();
+
+        $qb = $this->createQueryBuilder('s')
+            ->leftJoin('s.students', 'st')
+            ->where('st.id = :studentId')
+            ->andWhere('s.dateEnd > :now')
+            ->setParameter('studentId', $student_id)
+            ->setParameter('now', $now)
+            ->orderBy('s.dateEnd', 'ASC')
+            ->getQuery();
+
+        return $qb->getResult();
+    }
 }

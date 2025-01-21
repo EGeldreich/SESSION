@@ -17,29 +17,43 @@ class ProgramType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        // $builder
+        //     ->add('duration', NumberType::class, [
+        //         'attr' => [
+        //             'class' => 'form-input'
+        //         ]
+        //     ])
+        //     // ->add('session', EntityType::class, [
+        //     //     'class' => Session::class,
+        //     //     'choice_label' => 'id',
+        //     // ])
+        //     // ->add('lesson', EntityType::class, [
+        //     //     'class' => Lesson::class,
+        //     //     'choice_label' => 'id',
+        //     // ])
+        //     ->add('lesson', CollectionType::class, [
+        //         'entry_type' => EntityType::class,
+        //         'entry_options' => [
+        //             'class' => Lesson::class,
+        //             'choice_label' => 'name',
+        //         ],
+        //         'allow_add' => true,
+        //         'allow_delete' => false,
+        //         'by_reference' => false,
+        //     ])
+        //     ->add('submit', SubmitType::class, [
+        //         'attr' => [
+        //             'class' => 'submit-btn'
+        //         ]
+        //     ])
+        // ;
         $builder
-            ->add('duration', NumberType::class, [
-                'attr' => [
-                    'class' => 'form-input'
-                ]
-            ])
-            // ->add('session', EntityType::class, [
-            //     'class' => Session::class,
-            //     'choice_label' => 'id',
-            // ])
-            // ->add('lesson', EntityType::class, [
-            //     'class' => Lesson::class,
-            //     'choice_label' => 'id',
-            // ])
-            ->add('lesson', CollectionType::class, [
-                'entry_type' => EntityType::class,
-                'entry_options' => [
-                    'class' => Lesson::class,
-                    'choice_label' => 'name',
-                ],
-                // 'allow_add' => true,
-                // 'allow_delete' => false,
-                // 'by_reference' => false,
+            ->add('lessons', CollectionType::class, [
+                'entry_type' => LessonType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'allow_delete' => false,
+                'by_reference' => false,
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
