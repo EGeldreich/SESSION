@@ -20,7 +20,6 @@ final class SessionController extends AbstractController
         $sessions = $sessionRepository->findBy([], ["dateStart" => "ASC"]);
 
         return $this->render('session/index.html.twig', [
-            'controller_name' => 'SessionController',
             'sessions' => $sessions,
         ]);
     }
@@ -48,7 +47,6 @@ final class SessionController extends AbstractController
         }
 
         return $this->render('session/new.html.twig', [
-            'controller_name' => 'SessionController',
             'formNewSession' => $form,
             'edit' => $session->getId(),
         ]);
@@ -64,11 +62,18 @@ final class SessionController extends AbstractController
     }
 
     #[Route('/session/{id}', name: 'show_session')]
-    public function show(Session $session, Request $request, EntityManagerInterface $entityManager): Response
+    public function show(Session $session = null, SessionRepository $sr): Response
     {
+        if(!$session){
+            return $this->redirectToRoute('app_session');
+        }
+        
+        $nonRegisteredStudents = $sr->findNonRegisteredStudents($session->getId());
+        $nonScheduledLessons = $sr->findNonScheduledLessons($session->getId());
         return $this->render('session/show.html.twig', [
-            'controller_name' => 'sessionController',
             'session' => $session,
+            'nonRegisteredStudents' => $nonRegisteredStudents,
+            'nonScheduledLessons' => $nonScheduledLessons,
         ]);
     }
 

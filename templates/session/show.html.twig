@@ -48,7 +48,6 @@
         </div>
     
         <h2>Lessons</h2>
-    
         {% for program in session.programs %}
             <div>
                 <p>
@@ -56,9 +55,15 @@
                 </p>
             </div>
         {% endfor %}
+
+        <h3>Add Lesson</h3>
+        {% for lesson in nonScheduledLessons %}
+            <p>
+                {{ lesson.name }}
+            </p>
+        {% endfor %}
     
         <h2>Students</h2>
-    
         {% for student in session.students %}
             <div class="row">
                 <p>
