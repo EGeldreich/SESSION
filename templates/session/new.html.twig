@@ -27,28 +27,24 @@
     
         {{ form_start(formNewSession) }}
     
-            <div>
-                {{ form_row(formNewSession.name) }}
-            </div>
-            <div>
-                {{ form_row(formNewSession.place) }}
-            </div>
-            <div>
-                {{ form_row(formNewSession.dateStart) }}
-            </div>
-            <div>
-                {{ form_row(formNewSession.dateEnd) }}
-            </div>
-            <div>
-                {{ form_row(formNewSession.teacher) }}
-            </div>
-            <div>
-                {{ form_row(formNewSession.formation) }}
-            </div>
-    
+            
+            {{ form_row(formNewSession.name) }}
+        
+            {{ form_row(formNewSession.place) }}
+        
+            {{ form_row(formNewSession.dateStart) }}
+        
+            {{ form_row(formNewSession.dateEnd) }}
+        
+            {{ form_row(formNewSession.teacher) }}
+        
+            {{ form_row(formNewSession.formation) }}
+
+            {% do formNewSession.students.setRendered %}
+
             {{ form_row(formNewSession.submit) }}
     
-        {{ form_end(formNewSession) }}
+        {{ form_end(formNewSession, {'render_rest': false}) }}
         
     </div>
 

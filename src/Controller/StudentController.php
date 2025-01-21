@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Session;
 use App\Entity\Student;
 use App\Form\StudentType;
-use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\StudentRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -53,13 +54,32 @@ final class StudentController extends AbstractController
         ]);
     }
 
-    #[Route('/student/{id}/delete', name: 'delete_student')]
-    public function delete(Student $student, EntityManagerInterface $entityManager)
+    #[Route('/student/{id}/remove/{sessionId}', name: 'remove_student')]
+    public function remove(Student $student = null, int $sessionId, EntityManagerInterface $entityManager, Request $request): Response
     {
-        $entityManager->remove($student);
-        $entityManager->flush();
+        if ($student) {
+            $session = $entityManager->getRepository(Session::class)->find($sessionId);
+            if ($session) {
+            $session->removeStudent($student);
+            $entityManager->persist($session);
+                $entityManager->flush();
+                }
+            }
+        return $this->redirectToRoute('show_session', ['id' => $sessionId]);
+    }
 
-        return $this->redirectToRoute('app_student');
+    #[Route('/student/{id}/add/{sessionId}', name: 'add_student')]
+    public function add(Student $student = null, int $sessionId, EntityManagerInterface $entityManager, Request $request): Response
+    {
+        if ($student) {
+            $session = $entityManager->getRepository(Session::class)->find($sessionId);
+            if ($session) {
+            $session->addStudent($student);
+            $entityManager->persist($session);
+                $entityManager->flush();
+                }
+            }
+        return $this->redirectToRoute('show_session', ['id' => $sessionId]);
     }
 
     #[Route('/student/{id}', name: 'show_student')]
