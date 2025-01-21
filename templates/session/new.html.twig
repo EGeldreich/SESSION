@@ -12,7 +12,7 @@
 
     <div class="breadcrumb">
         <p class="row">
-            <a href="{{ path('app_home')}}">Dashboard</a>&nbsp;>&nbsp;<a href="{{ path('app_session')}}">Sessions</a>&nbsp;>&nbsp;<span class="pink">Add Session</span>
+            <a href="{{ path('app_home')}}">Dashboard</a>&nbsp;>&nbsp;<a href="{{ path('app_session')}}">Sessions</a>&nbsp;>&nbsp;<span class="blue">Add Session</span>
         </p>
     </div>
 
@@ -27,7 +27,6 @@
     
         {{ form_start(formNewSession) }}
     
-            
             {{ form_row(formNewSession.name) }}
         
             {{ form_row(formNewSession.place) }}
@@ -39,8 +38,6 @@
             {{ form_row(formNewSession.teacher) }}
         
             {{ form_row(formNewSession.formation) }}
-
-            {% do formNewSession.students.setRendered %}
 
             {{ form_row(formNewSession.submit) }}
     

@@ -70,27 +70,12 @@ final class SessionController extends AbstractController
             return $this->redirectToRoute('app_session');
         }
 
-        $form = $this->createForm(ProgramType::class);
-
-        $form->handleRequest($request);
-
-        // if($form->isSubmitted() && $form->isValid()) {
-
-        //     $session = $form->getData();
-
-        //     $entityManager->persist($session);
-        //     $entityManager->flush();
-
-        //     return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
-        // }
-
         $nonRegisteredStudents = $sr->findNonRegisteredStudents($session->getId());
         $nonScheduledLessons = $sr->findNonScheduledLessons($session->getId());
         return $this->render('session/show.html.twig', [
             'session' => $session,
             'nonRegisteredStudents' => $nonRegisteredStudents,
             'nonScheduledLessons' => $nonScheduledLessons,
-            // 'formAddLesson' => $form,
         ]);
     }
 

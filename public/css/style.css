@@ -20,21 +20,13 @@
     --grey2: #26282A;
     --grey3: #303336;
 
-    --green: #63FC9E;
     --blue: #2E9CFF;
-    --pink: #FF5CE1;
     --red: #FF495B;
 
 }
 /* UTILITIES */
 .blue {
     color: var(--blue);
-}
-.pink {
-    color: var(--pink);
-}
-.green {
-    color: var(--green);
 }
 .red {
     color: var(--red);
@@ -119,7 +111,7 @@ body {
 /* GRID LAYOUT ______________________________________________________________________________*/
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(18, 1fr);
+    grid-template-columns: repeat(auto-fill, 64px);
     grid-template-rows: repeat(auto-fill, 64px);
     gap: 16px;
 }
@@ -189,4 +181,21 @@ body {
     grid-column: 6 / -1;
     grid-row: 2 / -1;
 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 64px);
+    grid-template-rows: repeat(auto-fill, 64px);
+    gap: 16px;
+
+}
+
+/* MODAL ____________________________________________________________________________________________________ */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 16.66%; /* Equivalent to grid-column: 2 / 12 in a 18-column grid */
+    top: 11.11%; /* Equivalent to grid-row: 2 / 8 in a 9-row grid */
+    width: 66.66%; /* Equivalent to span 10 columns in a 18-column grid */
+    height: 77.77%; /* Equivalent to span 6 rows in a 9-row grid */
+    overflow: auto;
 }
