@@ -271,6 +271,9 @@ body {
     & .session-card_full {
         color: var(--blue);
     }
+    & .session-card_futureStart {
+        color: var(--blue);
+    }
 }
 /* DETAILS VIEWS ____________________________________________________________________ç */
 /* STUDENT DETAILS _________________________________________________ */
