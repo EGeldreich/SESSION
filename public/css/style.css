@@ -177,6 +177,28 @@ body {
     }
 }
 
+/* FLASH MESSAGES _________________________________________________________________ */
+.flash {
+    z-index: 1;
+    grid-column: 11 / -1;
+    grid-row: 1;
+    padding: 8px 24px;
+    border-radius: 8px;
+    align-self: center;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    transition: all 0.2s ease-in-out;
+    &.success {
+        border: 1px solid var(--green);
+    }
+    &.error {
+        border: 1px solid var(--red);
+    }
+    &.hidden {
+        display: none;
+    }
+}
 /* MAIN CONTENT ___________________________________________________________________________________ */
 .breadcrumb {
     grid-column: 5 / -1;

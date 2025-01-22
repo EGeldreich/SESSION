@@ -92,7 +92,7 @@
         </div>
 
         {% for label, messages in app.flashes %}
-            <div class="flash-{{ label }} flash">
+            <div class="{{ label }} flash grey3-bg row">
                 {% for message in messages %}
                     <p>{{ message }}</p>
                 {% endfor %}
