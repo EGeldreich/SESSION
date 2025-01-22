@@ -91,7 +91,15 @@
             </nav>
         </div>
 
-            {% block body %}{% endblock %}
+        {% for label, messages in app.flashes %}
+            <div class="flash-{{ label }} flash">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        {% block body %}{% endblock %}
 
     </body>
 </html>

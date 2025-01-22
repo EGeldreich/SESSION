@@ -83,6 +83,16 @@ class Session
         return $this;
     }
 
+    public function getPlacesTaken(): int
+    {
+        return count($this->getStudents());
+    }
+
+    public function getPlacesLeft(): int
+    {
+        return $this->place - $this->getPlacesTaken();
+    }
+    
     public function getDateStart(): ?\DateTimeInterface
     {
         return $this->dateStart;
@@ -196,11 +206,6 @@ class Session
         }
 
         return $this;
-    }
-
-    public function getPlacesTaken(): int
-    {
-        return count($this->getStudents());
     }
 
     public function __toString():string

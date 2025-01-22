@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class StudentController extends AbstractController
@@ -81,32 +82,45 @@ final class StudentController extends AbstractController
     }
 
     // ADD TO SESSION
-    #[Route('/student/{id}/add/{sessionId}', name: 'add_student')]
-    public function add(Student $student = null, int $sessionId, EntityManagerInterface $entityManager, Request $request): Response
-    {
-        if ($student) {
-            $session = $entityManager->getRepository(Session::class)->find($sessionId);
-            if ($session) {
-            $session->addStudent($student);
-            $entityManager->persist($session);
-                $entityManager->flush();
-                }
-            }
-        return $this->redirectToRoute('show_session', ['id' => $sessionId]);
-    }
+    // #[Route('/student/{id}/add/{sessionId}', name: 'add_student')]
+    // public function add(Student $student = null, int $sessionId, EntityManagerInterface $entityManager, Request $request): Response
+    // {
+    //     if ($student) {
+    //         $session = $entityManager->getRepository(Session::class)->find($sessionId);
+    //         if ($session) {
+    //         $session->addStudent($student);
+    //         $entityManager->persist($session);
+    //             $entityManager->flush();
+    //             }
+    //         }
+    //     return $this->redirectToRoute('show_session', ['id' => $sessionId]);
+    // }
 
     // ADD MULTIPLE TO SESSION
     #[Route('/student/addMultiple/{sessionId}', name: 'add_students')]
-    public function addMultiple(Student $student = null, int $sessionId, EntityManagerInterface $entityManager, Request $request): Response
+    public function addMultiple(int $sessionId, EntityManagerInterface $entityManager, Request $request, SessionInterface $si): Response
     {
-        // if ($student) {
-        //     $session = $entityManager->getRepository(Session::class)->find($sessionId);
-        //     if ($session) {
-        //     $session->addStudent($student);
-        //     $entityManager->persist($session);
-        //         $entityManager->flush();
-        //         }
-        //     }
+        $studentIds = $request->request->all('student_ids', []);
+        $session = $entityManager->getRepository(Session::class)->find($sessionId);
+
+        // Redirect if there are more students than places left
+        if(count($studentIds) > $session->getPlacesLeft()) {
+            $si->getFlashBag()->add('error', 'Not enough places left in the session.');
+            return $this->redirectToRoute('show_session', ['id' => $sessionId]);
+
+        }
+
+        if ($session) {
+            foreach ($studentIds as $studentId) {
+                $student = $entityManager->getRepository(Student::class)->find($studentId);
+                if ($student) {
+                    $session->addStudent($student);
+                }
+            }
+            $entityManager->persist($session);
+            $entityManager->flush();
+        }
+        $si->getFlashBag()->add('success', 'Students added successfully.');
         return $this->redirectToRoute('show_session', ['id' => $sessionId]);
     }
 

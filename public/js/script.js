@@ -48,26 +48,44 @@ document.addEventListener('turbo:load', function() {
 
 // STUDENT MODAL HANDLING ______________________________________________________________
 document.addEventListener('turbo:load', function() {
-
+  // Get relevant elements
   let modal = document.querySelector("#student-modal");
   let btn = document.querySelector("#add-student-button");
-  // let closeBtn = document.querySelector("#student-modal_close");
   
-  // When the user clicks on the button, open the modal
+  // Open modal
   btn.onclick = function() {
     modal.style.display = "grid";
+
+    // Dynamic places display
+
+    // Get relevant elements
+    let placesLeft = document.querySelector('.places-left');
+    let studentCheckboxes = document.querySelectorAll('.student-modal_checkbox');
+    let placesLeftOnOpen = document.querySelector('.places-left').textContent;
+    // Transform string to number
+    placesLeftOnOpen = parseInt(placesLeftOnOpen);
+
+    // Update places left on checkbox click
+    studentCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('click', function() {
+        // minus one place if checkbox is checked
+        if (checkbox.checked) {
+          placesLeftOnOpen --;
+          placesLeft.textContent = placesLeftOnOpen;
+        }
+        // plus one place if checkbox is unchecked
+        else {
+          placesLeftOnOpen ++;
+          placesLeft.textContent = placesLeftOnOpen;
+        }
+      });
+    });
   }
   
-  // When the user clicks on <closeBtn> (x), close the modal
-  // closeBtn.onclick = function() {
-  //   modal.style.display = "none";
-  // }
-  
-  // When the user clicks anywhere outside of the modal, close it
+  // Close modal on click outside of modal-content
   window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
     }
   }
-
 });

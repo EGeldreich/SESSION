@@ -108,7 +108,12 @@ h4, .h4 {
 .wrap {
     flex-wrap: wrap;
 }
-
+.submit {
+    cursor: pointer;
+    padding: 8px 40px;
+    border-radius: 8px;
+    color: black;
+}
 body {
     font-family: "Nunito", sans-serif;
     font-size: 16px;
@@ -474,12 +479,6 @@ body {
         grid-row: -1 / span 1;
         justify-content: center;
     }
-    & .submit {
-        cursor: pointer;
-        padding: 8px 40px;
-        border-radius: 8px;
-        color: black;
-    }
 }
 /* SESSION */
 .session-form {
@@ -500,7 +499,7 @@ body {
 }
 .modal-content {
     grid-column: 5 / -2;
-    grid-row: 3 / -3;
+    grid-row: 3 / -2;
     border-radius: 16px;
 }
 .modal-title {
@@ -515,7 +514,7 @@ body {
 }
 .modal-container {
     grid-column:  2 / -1;
-    grid-row: 2 / -1;
+    grid-row: 2 / -2;
 }
 .student-modal_card {
     padding: 6px;
@@ -536,7 +535,11 @@ body {
 .student-modal_checkbox:checked + .student-modal_card {
     background-color: var(--black);
 }
-
+.student-modal_submit {
+    padding: 8px 16px;
+    grid-column: -5 / span 3;
+    grid-row: -1 / span 1;
+}
 /* UTILITIES END */
 .hidden {
     display: none;
