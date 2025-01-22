@@ -46,9 +46,6 @@
 .black-bg {
     background-color: var(--black);
 }
-.blue-bg {
-    background-color: var(--blue);
-}
 .pink-bg {
     background-color: var(--pink);
 }
@@ -66,6 +63,9 @@
 }   
 .grey3-bg {
     background-color: var(--grey3);
+}
+.blue-bg {
+    background-color: var(--blue);
 }
 h1, .h1 {
     font-family: "Outfit", serif;
@@ -107,6 +107,7 @@ h4, .h4 {
 .wrap {
     flex-wrap: wrap;
 }
+
 body {
     font-family: "Nunito", sans-serif;
     font-size: 16px;
@@ -202,28 +203,73 @@ body {
 .page-info {
     height: fit-content;
     width: fit-content;
-    grid-column: 1 / -1;
+    grid-column: 1 / span 5;
     grid-row: 2;
     padding: 4px 8px;
     color: var(--grey2);
     border-radius: 8px;
+    align-self: center;
 }
 /* LIST VIEWS ________________________________________________ */
-.student-card-container, .teacher-card-container {
+.student-card-container,
+.teacher-card-container,
+.session-card-container {
     grid-column: 1 / -1;
     grid-row: 3 / -1;
 }
-.student-card, .teacher-card {
+.session-display-btn {
+    justify-self: center;
+    grid-column: span 3;
+    grid-row: 2;
+    border-radius: 8px;
+    height: fit-content;
+    width: fit-content;
+    padding: 8px 16px;
+    align-self: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        background-color: var(--grey1);
+    }
+    &.blue-bg {
+        color: var(--black);
+        &:hover {
+            background-color: var(--blue);
+        }
+    }
+}
+.student-card,
+.teacher-card,
+.session-card {
     border-radius: 16px;
     grid-column: span 4;
     grid-row: span 1;
-    padding: 0 24px;
+    padding: 24px;
     justify-content: space-between;
     align-items: center;
     transition: all 0.2s ease-in-out;
 
     &:hover {
         background-color: var(--grey2);
+    }
+}
+.session-card {
+    grid-row: span 2;
+    grid-column: span 6;
+    align-items: start;
+    & .session-card_infos {
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+    & svg {
+        margin-right: 16px;
+    }
+    & p, .session-card_dates {
+        align-items: center;
+    }
+    & .session-card_full {
+        color: var(--blue);
     }
 }
 /* DETAILS VIEWS ____________________________________________________________________ç */
@@ -336,4 +382,9 @@ body {
     width: 66.66%; /* Equivalent to span 10 columns in a 18-column grid */
     height: 77.77%; /* Equivalent to span 6 rows in a 9-row grid */
     overflow: auto;
+}
+
+/* UTILITIES END */
+.hidden {
+    display: none;
 }
