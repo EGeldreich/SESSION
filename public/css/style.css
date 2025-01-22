@@ -226,15 +226,19 @@ body {
         background-color: var(--grey2);
     }
 }
+/* DETAILS VIEWS ____________________________________________________________________ç */
 /* STUDENT DETAILS _________________________________________________ */
-.student-info_main {
+.student-info_main, .teacher-info_main {
     grid-column: 1 / span 4;
     grid-row: 2 / span 4;
     border-radius: 16px;
     padding: 32px;
     justify-content: space-between;
 }
-.student-info_contact {
+.teacher-info_main {
+    grid-row: 2 / span 2;
+}
+.student-info_contact, .teacher-info_contact {
     grid-column: 6 / span 6;
     grid-row: 2 / span 3;
     & div {
@@ -246,15 +250,26 @@ body {
         gap: 24px;
     }
 }
+.teacher-info_contact {
+    grid-row: 2 / span 2;
+}
 .student-h2 {
     grid-column: 1 / -1;
     grid-row: 6;
+}
+.teacher-h2 {
+    grid-column: 1 / -1;
+    grid-row: 4;
 }
 .student-session-container {
     grid-column: 1 / -1;
     grid-row: 7 / -1;
 }
-.student-session-card {
+.teacher-session-container {
+    grid-column: 1 / -1;
+    grid-row: 5 / -1;
+}
+.person-session-card {
     grid-column: span 6;
     grid-row: span 1;
     justify-content: space-between;
@@ -266,6 +281,8 @@ body {
         background-color: var(--grey2);
     }
 }
+/* TEACHER DETAILS _________________________________________________ */
+
 /* STUDENT ADD ______________________________________________________ */
 .student-form {
     grid-column: 1 / -2;

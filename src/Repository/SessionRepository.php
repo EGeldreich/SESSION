@@ -123,6 +123,47 @@ class SessionRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    // SESSIONS RELATED TO EACH TEACHER __________________________________
+    public function findTeacherFinishedSessions($teacherId): array
+    {
+        $now = new \DateTime();
+
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.dateEnd < :now')
+            ->andWhere('s.teacher = :id')
+            ->setParameter('id', $teacherId)
+            ->setParameter('now', $now)
+            ->orderBy('s.dateEnd', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    public function findTeacherOngoingSessions($teacherId): array
+    {
+        $now = new \DateTime();
+
+        return $this->createQueryBuilder('s')
+            ->andWhere(':now BETWEEN s.dateStart AND s.dateEnd')
+            ->andWhere('s.teacher = :id')
+            ->setParameter('id', $teacherId)
+            ->setParameter('now', $now)
+            ->orderBy('s.dateEnd', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    public function findTeacherFutureSessions($teacherId): array
+    {
+        $now = new \DateTime();
+
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.dateEnd > :now')
+            ->andWhere('s.teacher = :id')
+            ->setParameter('id', $teacherId)
+            ->setParameter('now', $now)
+            ->orderBy('s.dateEnd', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     // SESSIONS RELATED TO EACH STUDENT _______________________________________
     public function findStudentFinishedSessions($student_id): array
     {
