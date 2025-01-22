@@ -15,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class StudentController extends AbstractController
 {
+    // INDEX
     #[Route('/student', name: 'app_student')]
     public function index(StudentRepository $studentRepository): Response
     {
@@ -25,6 +26,7 @@ final class StudentController extends AbstractController
         ]);
     }
 
+    // NEW & EDIT
     #[Route('/student/new', name: 'new_student')]
     #[Route('/student/{id}/edit', name: 'edit_student')]
     public function new_edit(Student $student = null, Request $request, EntityManagerInterface $entityManager): Response
@@ -53,6 +55,7 @@ final class StudentController extends AbstractController
         ]);
     }
 
+    // DELETE
     #[Route('/student/{id}/delete', name: 'delete_student')]
     public function delete(Student $student, EntityManagerInterface $entityManager)
     {
@@ -62,6 +65,7 @@ final class StudentController extends AbstractController
         return $this->redirectToRoute('app_student');
     }
 
+    // REMOVE FROM SESSION
     #[Route('/student/{id}/remove/{sessionId}', name: 'remove_student')]
     public function remove(Student $student = null, int $sessionId, EntityManagerInterface $entityManager, Request $request): Response
     {
@@ -76,6 +80,7 @@ final class StudentController extends AbstractController
         return $this->redirectToRoute('show_session', ['id' => $sessionId]);
     }
 
+    // ADD TO SESSION
     #[Route('/student/{id}/add/{sessionId}', name: 'add_student')]
     public function add(Student $student = null, int $sessionId, EntityManagerInterface $entityManager, Request $request): Response
     {
@@ -90,6 +95,22 @@ final class StudentController extends AbstractController
         return $this->redirectToRoute('show_session', ['id' => $sessionId]);
     }
 
+    // ADD MULTIPLE TO SESSION
+    #[Route('/student/addMultiple/{sessionId}', name: 'add_students')]
+    public function addMultiple(Student $student = null, int $sessionId, EntityManagerInterface $entityManager, Request $request): Response
+    {
+        // if ($student) {
+        //     $session = $entityManager->getRepository(Session::class)->find($sessionId);
+        //     if ($session) {
+        //     $session->addStudent($student);
+        //     $entityManager->persist($session);
+        //         $entityManager->flush();
+        //         }
+        //     }
+        return $this->redirectToRoute('show_session', ['id' => $sessionId]);
+    }
+
+    // SHOW DETAILS
     #[Route('/student/{id}', name: 'show_student')]
     public function show(Student $student, SessionRepository $sr): Response
     {

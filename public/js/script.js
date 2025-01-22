@@ -1,24 +1,26 @@
+// document.addEventListener('turbo:load', function() {
+//   const links = document.querySelectorAll('nav a');
+  
+//   console.log(links)
+  
+//   // Récupère l'ID du lien actif depuis localStorage
+//   const activeLinkId = localStorage.getItem('activeLinkId');
+  
+//   if (activeLinkId) {
+//       const activeLink = document.getElementById(activeLinkId);
+//       if (activeLink) {
+//           activeLink.classList.add('active');
+//       }
+//   }
+  
+//   links.forEach(link => {
+//       link.addEventListener('click', function() {
+//           // Enregistre l'ID du lien actif dans localStorage avant de changer de page
+//           localStorage.setItem('activeLinkId', this.id);
+//           window.location.reload()
+//       });
+//   });
 
-// const links = document.querySelectorAll('nav a');
-
-// console.log(links)
-
-// // Récupère l'ID du lien actif depuis localStorage
-// const activeLinkId = localStorage.getItem('activeLinkId');
-
-// if (activeLinkId) {
-//     const activeLink = document.getElementById(activeLinkId);
-//     if (activeLink) {
-//         activeLink.classList.add('active');
-//     }
-// }
-
-// links.forEach(link => {
-//     link.addEventListener('click', function() {
-//         // Enregistre l'ID du lien actif dans localStorage avant de changer de page
-//         localStorage.setItem('activeLinkId', this.id);
-//         window.location.reload()
-//     });
 // });
 
 // SESSION LIST DISPLAY _________________________________________________________
@@ -44,29 +46,28 @@ document.addEventListener('turbo:load', function() {
   });
 });
 
-// MODAL HANDLING ______________________________________________________________
-// Get the modal
-let modal = document.querySelector(".modal");
+// STUDENT MODAL HANDLING ______________________________________________________________
+document.addEventListener('turbo:load', function() {
 
-// Get the button that opens the modal
-let btn = document.querySelector(".modal-button");
-
-// Get the <span> element that closes the modal
-let closeBtn = document.querySelector(".modal-close");
-
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <closeBtn> (x), close the modal
-closeBtn.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  let modal = document.querySelector("#student-modal");
+  let btn = document.querySelector("#add-student-button");
+  // let closeBtn = document.querySelector("#student-modal_close");
+  
+  // When the user clicks on the button, open the modal
+  btn.onclick = function() {
+    modal.style.display = "grid";
   }
-}
+  
+  // When the user clicks on <closeBtn> (x), close the modal
+  // closeBtn.onclick = function() {
+  //   modal.style.display = "none";
+  // }
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+});
