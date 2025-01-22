@@ -9,63 +9,84 @@
         </p>
     </div>
 
-    <div class="content-container">
+    <div class="grid content-container">
 
-        <div class="session-title row">
+        <div class="page-title row">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="32" height="32" rx="8" fill="var(--grey1)"/>
+                <path d="M22.1579 13.3V18.7102C22.1579 19.3897 22.1579 19.7294 22.0266 20.0223C21.9834 20.1185 21.9302 20.21 21.8678 20.295C21.6781 20.5539 21.3828 20.7218 20.7921 21.0576L17.3342 23.0229C16.7565 23.3513 16.4677 23.5154 16.1548 23.5479C16.0519 23.5586 15.9481 23.5586 15.8452 23.5479C15.5323 23.5154 15.2435 23.3513 14.6658 23.0229L11.2079 21.0576C10.6172 20.7218 10.3219 20.5539 10.1322 20.295C10.0698 20.21 10.0166 20.1185 9.97344 20.0223C9.84211 19.7294 9.84211 19.3897 9.84211 18.7102V13.3M25 11.9241L17.129 8.30094C16.6361 8.07408 16.3897 7.96065 16.1293 7.93812C16.0432 7.93068 15.9568 7.93068 15.8707 7.93812C15.6103 7.96065 15.3639 8.07408 14.871 8.30094L7 11.9241L14.8235 15.7117C15.3362 15.9599 15.5925 16.084 15.8649 16.1086C15.9548 16.1167 16.0452 16.1167 16.1351 16.1086C16.4075 16.084 16.6638 15.9599 17.1765 15.7117L25 11.9241ZM25 11.9241V21.1813C25 21.7689 25 22.0627 24.898 22.325C24.8644 22.4114 24.8228 22.4946 24.7738 22.5734C24.6251 22.8124 24.3901 22.9887 23.92 23.3412L22.75 24.2188" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
             <h1><span class="blue">{{ session }}</span></h1>
     
-            <a href={{ path('edit_session', {'id' : session.id}) }}>
-                Edit
+            <a class="row" href={{ path('edit_session', {'id' : session.id}) }}>
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="var(--grey1)"/>
+                    <path d="M19 9.58588L21 11.5859M17 23.5859H25M7 24.0859L8 20.0859L19.5858 8.50009C20.3668 7.71905 21.6332 7.71904 22.4142 8.50009L22.5858 8.67166C23.3668 9.45271 23.3668 10.719 22.5858 11.5001L11 23.0859L7 24.0859Z" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
-    
+        
             <a href={{ path('delete_session', {'id' : session.id}) }}>
-                <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 5.14239L6 3.4709C6 2.30611 6 1.72371 6.34942 1.36186C6.69883 1 7.26121 1 8.38596 1L11.614 1C12.7388 1 13.3012 1 13.6506 1.36186C14 1.72371 14 2.30611 14 3.4709V5.14239" stroke="#FF495B" stroke-width="2"/>
-                    <path d="M12 10.2153V15.2153" stroke="#FF495B" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M8 10.2153V15.2153" stroke="#FF495B" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M3.88562 14.5237L2.88129 5.43042L17.1188 5.43042L16.1145 14.5237C15.9656 15.8716 15.861 16.8079 15.7072 17.525C15.5572 18.2237 15.3796 18.6123 15.1451 18.8991C14.9486 19.1395 14.7159 19.3478 14.4555 19.5168C14.1447 19.7184 13.7389 19.8523 13.0279 19.9246C12.2983 19.9988 11.3562 20 10.0001 20C8.64393 20 7.70181 19.9988 6.97221 19.9246C6.26123 19.8523 5.85545 19.7184 5.54464 19.5168C5.2842 19.3478 5.05155 19.1395 4.85503 18.8991C4.62049 18.6123 4.44288 18.2237 4.29297 17.525C4.13912 16.8079 4.0345 15.8716 3.88562 14.5237Z" stroke="#FF495B" stroke-width="2"/>
-                    <path d="M1 5.12207H19" stroke="#FF495B" stroke-width="2" stroke-linecap="round"/>
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="var(--grey1)"/>
+                    <path d="M19.2854 7.32567L18.5661 8.0203L18.5661 8.0203L19.2854 7.32567ZM12.7144 7.32567L13.4337 8.0203L13.4337 8.0203L12.7144 7.32567ZM18.7999 15.2937C18.7999 14.7414 18.3522 14.2937 17.7999 14.2937C17.2476 14.2937 16.7999 14.7414 16.7999 15.2937H18.7999ZM16.7999 19.7937C16.7999 20.346 17.2476 20.7937 17.7999 20.7937C18.3522 20.7937 18.7999 20.346 18.7999 19.7937H16.7999ZM15.1999 15.2937C15.1999 14.7414 14.7522 14.2937 14.1999 14.2937C13.6476 14.2937 13.1999 14.7414 13.1999 15.2937H15.1999ZM13.1999 19.7937C13.1999 20.346 13.6476 20.7937 14.1999 20.7937C14.7522 20.7937 15.1999 20.346 15.1999 19.7937H13.1999ZM8.7999 10.6L8.7999 9.6L7.68264 9.6L7.80602 10.7104L8.7999 10.6ZM23.1999 10.6L24.1938 10.7104L24.3172 9.6L23.1999 9.6L23.1999 10.6ZM15.9999 25L15.9999 26L15.9999 25ZM11.775 24.49L11.2619 25.3484L11.775 24.49ZM9.78148 19.4342L8.7876 19.5447L8.7876 19.5447L9.78148 19.4342ZM10.7549 23.577L11.5513 22.9723L10.7549 23.577ZM20.2248 24.49L19.7118 23.6317L19.7118 23.6317L20.2248 24.49ZM22.2183 19.4342L21.2244 19.3238L21.2244 19.3238L22.2183 19.4342ZM21.2449 23.577L20.4485 22.9723L21.2449 23.577ZM7.8999 9.6C7.34762 9.6 6.8999 10.0477 6.8999 10.6C6.8999 11.1523 7.34762 11.6 7.8999 11.6V9.6ZM24.0999 11.6C24.6522 11.6 25.0999 11.1523 25.0999 10.6C25.0999 10.0477 24.6522 9.6 24.0999 9.6V11.6ZM13.3999 10.7282V9.22381H11.3999V10.7282H13.3999ZM14.5473 8H17.4525V6H14.5473V8ZM18.5999 9.22381V10.7282H20.5999V9.22381H18.5999ZM17.4525 8C17.9879 8 18.2853 8.00227 18.4928 8.03115C18.6677 8.05552 18.624 8.08032 18.5661 8.0203L20.0048 6.63104C19.6324 6.24535 19.1784 6.10732 18.7686 6.05026C18.3912 5.99773 17.9294 6 17.4525 6V8ZM20.5999 9.22381C20.5999 8.72698 20.6019 8.25717 20.5523 7.875C20.4994 7.46756 20.3725 7.01183 20.0048 6.63104L18.5661 8.0203C18.5128 7.96518 18.5432 7.93436 18.5689 8.13249C18.5979 8.35591 18.5999 8.67233 18.5999 9.22381H20.5999ZM13.3999 9.22381C13.3999 8.67233 13.4019 8.35591 13.4309 8.13249C13.4566 7.93436 13.487 7.96518 13.4337 8.0203L11.995 6.63104C11.6273 7.01183 11.5004 7.46756 11.4475 7.875C11.3979 8.25717 11.3999 8.72698 11.3999 9.22381H13.3999ZM14.5473 6C14.0704 6 13.6086 5.99773 13.2313 6.05026C12.8215 6.10732 12.3675 6.24535 11.995 6.63104L13.4337 8.0203C13.3758 8.08032 13.3321 8.05552 13.5071 8.03115C13.7145 8.00227 14.0119 8 14.5473 8V6ZM16.7999 15.2937V19.7937H18.7999V15.2937H16.7999ZM13.1999 15.2937V19.7937H15.1999V15.2937H13.1999ZM10.7754 19.3238L9.79379 10.4896L7.80602 10.7104L8.7876 19.5447L10.7754 19.3238ZM8.7999 11.6L23.1999 11.6L23.1999 9.6L8.7999 9.6L8.7999 11.6ZM22.206 10.4896L21.2244 19.3238L23.2122 19.5447L24.1938 10.7104L22.206 10.4896ZM15.9999 24C14.8567 24 14.0695 23.9989 13.4593 23.9408C12.8659 23.8842 12.5366 23.7803 12.288 23.6317L11.2619 25.3484C11.8665 25.7098 12.5257 25.8608 13.2695 25.9317C13.9965 26.0011 14.8952 26 15.9999 26L15.9999 24ZM8.7876 19.5447C8.90959 20.6426 9.00778 21.5359 9.15697 22.2508C9.30959 22.9823 9.53254 23.6208 9.95847 24.1818L11.5513 22.9723C11.3762 22.7416 11.2366 22.4258 11.1148 21.8423C10.9896 21.2423 10.9016 20.46 10.7754 19.3238L8.7876 19.5447ZM12.288 23.6317C12.0026 23.461 11.7525 23.2372 11.5513 22.9723L9.95847 24.1818C10.3143 24.6504 10.7568 25.0464 11.2619 25.3484L12.288 23.6317ZM15.9999 26C17.1046 26 18.0033 26.0011 18.7303 25.9317C19.4741 25.8608 20.1333 25.7098 20.7379 25.3484L19.7118 23.6317C19.4632 23.7803 19.1339 23.8842 18.5405 23.9408C17.9303 23.9989 17.1431 24 15.9999 24L15.9999 26ZM21.2244 19.3238C21.0982 20.46 21.0102 21.2423 20.885 21.8423C20.7632 22.4258 20.6236 22.7416 20.4485 22.9723L22.0413 24.1818C22.4673 23.6208 22.6902 22.9823 22.8428 22.2508C22.992 21.5359 23.0902 20.6426 23.2122 19.5447L21.2244 19.3238ZM20.7379 25.3484C21.243 25.0464 21.6855 24.6504 22.0413 24.1818L20.4485 22.9723C20.2473 23.2372 19.9972 23.461 19.7118 23.6317L20.7379 25.3484ZM7.8999 11.6H24.0999V9.6H7.8999V11.6Z" fill="var(--red)"/>
                 </svg>
             </a>
         </div>
     
-        <div>
+        <div class="session-info_main grey3-bg column">
             <p>
-                Places: {{ session.place }}
+                <span class="grey4">Places:</span> {{ session.place }}
             </p>
             <p>
-                Students: {{ session.placesTaken }}
+                <span class="grey4">Students:</span> {{ session.placesTaken }}
             </p>
             <p>
-                Start: {{ session.dateStartFormat }}
+                <span class="grey4">Start:</span> {{ session.dateStartFormat }}
             </p>
             <p>
-                End: {{ session.dateEndFormat }}
+                <span class="grey4">End:</span> {{ session.dateEndFormat }}
             </p>
             <p>
-                Formation: {{ session.formation }}
-            </p>    
+                <span class="grey4">Teacher:</span>&nbsp;{{ session.teacher.firstname }} <span class="blue">{{ session.teacher }}</span>
+            </p>
+            <p>
+                <span class="grey4">Formation:</span> {{ session.formation }}
+            </p>
         </div>
     
-        <h2>Lessons</h2>
-        {% for program in session.programs %}
-            <div class="lesson-block">
+        {# <h2 class="session-lesson-h2">Lessons</h2> #}
+        <div class="session-info_lessons grid">
+            {% for program in session.programs %}
+            <div class="grey3-bg row">
                 <p>
-                    {{ program.lesson }} -- {{ program.duration }} days
+                    {{ program.lesson }}
                 </p>
+                {% if program.duration > 1 %}
+                    <p class="row">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 5V10H15M10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10C19 14.9706 14.9706 19 10 19Z" stroke="var(--grey4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        {{ program.duration }} days
+                    </p>
+                    {% else %}
+                    <p class="row">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 5V10H15M10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10C19 14.9706 14.9706 19 10 19Z" stroke="var(--grey4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        {{ program.duration }} day
+                    </p>
+                {% endif %}
             </div>
-        {% endfor %}
-        
-        <div class="lesson-block lesson-block_add">
-            <button id="add-lesson-button" class="modal-button">
+            {% endfor %}
+            <button id="add-lesson-button" class="modal-button grey3-bg">
                 <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9.5 17.9852V9.49995M9.5 9.49995V1.01465M9.5 9.49995H17.9853M9.5 9.49995H1.01469" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
         </div>
 
-        <div id="add-lesson-modal" class="modal">
-            {# <button class="modal-close">
+        {# <div id="add-lesson-modal" class="modal">
+            <button class="modal-close">
                 Close
             </button>
             <h3>Add Lessons</h3>
@@ -73,34 +94,37 @@
                 {{ form_widget(form) }}
                 <button type="button" id="add-lesson">Add Lesson</button>
                 <button type="submit">Save</button>
-            {{ form_end(form) }} #}
-        </div>
+            {{ form_end(form) }}
+        </div> #}
         
     
-        <h2>Students</h2>
-        {% for student in session.students %}
-            <div class="row">
-                <p>
-                    <a href={{ path('show_student', {'id' : student.id}) }}>
-                        {{ student.firstname}} {{ student }}
+        <h2 class="session-students-h2">Students</h2>
+        <div class="session-student-container grid">
+            {% for student in session.students %}
+                <div class="session-student-card row sat18">
+                    <a class="session-student-card_student row grey3-bg"href={{ path('show_student', {'id' : student.id}) }}>
+                        <p>
+                            {{ student.firstname}} <span class="blue">{{ student }}</span>
+                        </p>
+                        <p class="grey4">
+                            {{ student.citySmall }}
+                        </p>
                     </a>
-                </p>
-                <p>
-                    {{ student.citySmall }}
-                </p>
-                <a href={{ path('remove_student', {'id': student.id, 'sessionId': session.id}) }}>
-                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6 5.14239L6 3.4709C6 2.30611 6 1.72371 6.34942 1.36186C6.69883 1 7.26121 1 8.38596 1L11.614 1C12.7388 1 13.3012 1 13.6506 1.36186C14 1.72371 14 2.30611 14 3.4709V5.14239" stroke="#FF495B" stroke-width="2"/>
-                        <path d="M12 10.2153V15.2153" stroke="#FF495B" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M8 10.2153V15.2153" stroke="#FF495B" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M3.88562 14.5237L2.88129 5.43042L17.1188 5.43042L16.1145 14.5237C15.9656 15.8716 15.861 16.8079 15.7072 17.525C15.5572 18.2237 15.3796 18.6123 15.1451 18.8991C14.9486 19.1395 14.7159 19.3478 14.4555 19.5168C14.1447 19.7184 13.7389 19.8523 13.0279 19.9246C12.2983 19.9988 11.3562 20 10.0001 20C8.64393 20 7.70181 19.9988 6.97221 19.9246C6.26123 19.8523 5.85545 19.7184 5.54464 19.5168C5.2842 19.3478 5.05155 19.1395 4.85503 18.8991C4.62049 18.6123 4.44288 18.2237 4.29297 17.525C4.13912 16.8079 4.0345 15.8716 3.88562 14.5237Z" stroke="#FF495B" stroke-width="2"/>
-                        <path d="M1 5.12207H19" stroke="#FF495B" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </a>
-            </div>
-        {% endfor %}
+                    <a class="session-student-card_remove grey2-bg row" href={{ path('remove_student', {'id': student.id, 'sessionId': session.id}) }}>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 13L7.00002 7.00002M7.00002 7.00002L1 1M7.00002 7.00002L13 1M7.00002 7.00002L1 13" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            {% endfor %}
+            <button id="add-student-button" class="session-student-card session-student-card_add grey3-bg row">
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.5 17.9852V9.49995M9.5 9.49995V1.01465M9.5 9.49995H17.9853M9.5 9.49995H1.01469" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
 
-        <h3>Add Students</h3>
+        {# <h3>Add Students</h3>
         {% for student in nonRegisteredStudents %}
             <div class="row">
                 <p>
@@ -113,7 +137,7 @@
                     </svg>
                 </a>
             </div>
-        {% endfor %}
+        {% endfor %} #}
      
     </div>
 {% endblock %}

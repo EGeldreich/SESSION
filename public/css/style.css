@@ -126,7 +126,7 @@ body {
 /* SIDEBAR __________________________________________________________________________________*/
 .sidebar {
     grid-column: span 4;
-    grid-row: 1 / -1;
+    height: 100vh;
     border-right: 1px solid var(--grey3);
 
     & h2 {
@@ -274,20 +274,24 @@ body {
     & .session-card_futureStart {
         color: var(--blue);
     }
+    & .session-card_finished {
+        color: var(--grey4);
+    }
 }
-/* DETAILS VIEWS ____________________________________________________________________ç */
-/* STUDENT DETAILS _________________________________________________ */
-.student-info_main, .teacher-info_main {
+/* DETAILS VIEWS ____________________________________________________________________ */
+/* GENERAL */
+.student-info_main,
+.teacher-info_main,
+.session-info_main {
     grid-column: 1 / span 4;
     grid-row: 2 / span 4;
     border-radius: 16px;
     padding: 32px;
     justify-content: space-between;
 }
-.teacher-info_main {
-    grid-row: 2 / span 2;
-}
-.student-info_contact, .teacher-info_contact {
+.student-info_contact,
+.teacher-info_contact,
+.session-info_lessons {
     grid-column: 6 / span 6;
     grid-row: 2 / span 3;
     & div {
@@ -298,25 +302,6 @@ body {
         border-radius: 16px;
         gap: 24px;
     }
-}
-.teacher-info_contact {
-    grid-row: 2 / span 2;
-}
-.student-h2 {
-    grid-column: 1 / -1;
-    grid-row: 6;
-}
-.teacher-h2 {
-    grid-column: 1 / -1;
-    grid-row: 4;
-}
-.student-session-container {
-    grid-column: 1 / -1;
-    grid-row: 7 / -1;
-}
-.teacher-session-container {
-    grid-column: 1 / -1;
-    grid-row: 5 / -1;
 }
 .person-session-card {
     grid-column: span 6;
@@ -330,7 +315,119 @@ body {
         background-color: var(--grey2);
     }
 }
-/* TEACHER DETAILS _________________________________________________ */
+/* STUDENT */
+.student-h2 {
+    grid-column: 1 / -1;
+    grid-row: 6;
+    align-self: self-end;
+}
+.student-session-container {
+    grid-column: 1 / -1;
+    grid-row: 7 / -1;
+}
+/* TEACHER */
+.teacher-info_main {
+    grid-row: 2 / span 2;
+}
+.teacher-info_main {
+    grid-row: 2 / span 5;
+}
+.teacher-info_contact {
+    grid-row: 2 / span 2;
+}
+.teacher-h2 {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    align-self: self-end;
+}
+.teacher-session-container {
+    grid-column: 1 / -1;
+    grid-row: 5 / -1;
+}
+/* SESSION */
+/* .session-lesson-h2 {
+    grid-column: 6 / -1;
+    grid-row: 2;
+    align-self: self-end;
+} */
+.session-info_lessons {
+    grid-column: 6 / -1;
+    grid-row: 2 / span 4;
+    &  div {
+        grid-column: span 5;
+        justify-content: space-between;
+    }
+    & svg {
+        margin-right: 16px;
+    }
+    & p {
+        align-items: center;
+    }
+}
+#add-lesson-button {
+    grid-column: span 1;
+    grid-row: span 1;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    & svg {
+        margin: 0;
+    }
+    &:hover {
+        background-color: var(--grey2);
+    }
+}
+.session-students-h2 {
+    grid-column: 1 / span 5;
+    grid-row: 6;
+    align-self: self-end;
+}
+.session-student-container {
+    grid-column: 1 / -1;
+    grid-row: 7 / -1;
+}
+.session-student-card {
+    grid-column: span 4;
+    grid-row: span 1;
+    border-radius: 16px;
+    overflow: hidden;
+    
+    &.session-student-card_add {
+        grid-column: span 1;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+            background-color: var(--grey2);
+        }
+    }
+    & a {
+        align-items: center;
+    }
+    & .session-student-card_student {
+        padding: 0 24px;
+        width: 85%;
+        height: 100%;
+        justify-content: space-between;
+        border-right: 2px solid var(--black);
+        transition: all 0.2s ease-in-out;
+        &:hover {
+            background-color: var(--grey1);
+        }
+    }
+    & .session-student-card_remove {
+        width: 15%;
+        height: 100%;
+        justify-content: center;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+            background-color: var(--grey1);
+        }
+    }
+}
 
 /* STUDENT ADD ______________________________________________________ */
 .student-form {
