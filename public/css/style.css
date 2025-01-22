@@ -208,12 +208,12 @@ body {
     color: var(--grey2);
     border-radius: 8px;
 }
-/* STUDENT LIST ________________________________________________ */
-.student-card-container {
+/* LIST VIEWS ________________________________________________ */
+.student-card-container, .teacher-card-container {
     grid-column: 1 / -1;
     grid-row: 3 / -1;
 }
-.student-card {
+.student-card, .teacher-card {
     border-radius: 16px;
     grid-column: span 4;
     grid-row: span 1;
@@ -308,7 +308,6 @@ body {
         color: black;
     }
 }
-
 
 /* MODAL ____________________________________________________________________________________________________ */
 .modal {

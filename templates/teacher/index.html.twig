@@ -9,19 +9,29 @@
         </p>
     </div>
 
-    <div class="content-container">
+    <div class="grid content-container">
 
-        <h1>Teacher <span class="blue">List</span></h1>
+        <div class="page-title row">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="32" height="32" rx="8" fill="var(--grey1)"/>
+                <path d="M9 21H23M9 16H23M9 11H17" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h1>Teacher <span class="blue">List</span></h1>
+        </div>
     
-        {% for teacher in teachers %}
-            <p>
-                <a href={{ path('show_teacher', {'id' : teacher.id}) }}>
-                    {{ teacher.firstname}} {{ teacher }}
+        <span class="page-info blue-bg sat18">Select a teacher to see more information</span>
+
+        <div class="teacher-card-container grid ">
+            {% for teacher in teachers %}
+
+                <a class="row teacher-card grey3-bg sat18" href={{ path('show_teacher', {'id' : teacher.id}) }}>
+                    <p>
+                        {{ teacher.firstname}} <span class="blue">{{ teacher }}</span>
+                    </p>
                 </a>
-            </p>
-            
-                
-        {% endfor %}
+
+            {% endfor %}
+        </div>
         
     </div>
 
