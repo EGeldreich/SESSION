@@ -16,32 +16,40 @@
         </p>
     </div>
 
-    <div class="content-container">
+    <div class="grid content-container">
 
-        {% if edit %}
-            <h1>Edit Session</h1>
-            
-        {% else %}
-            <h1>Add Session</h1>
-        {% endif %}
+        <div class="page-title row">
+            {% if edit %}
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="var(--grey1)"/>
+                    <path d="M19 9.58588L21 11.5859M17 23.5859H25M7 24.0859L8 20.0859L19.5858 8.50009C20.3668 7.71905 21.6332 7.71904 22.4142 8.50009L22.5858 8.67166C23.3668 9.45271 23.3668 10.719 22.5858 11.5001L11 23.0859L7 24.0859Z" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h1>Edit Session</h1>
+            {% else %}
+                <svg width="33" height="34" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="0.514648" width="32.9706" height="32.9706" rx="4" fill="var(--grey1)"/>
+                    <path d="M16.4854 25.4852V17M16.4854 17V8.51465M16.4854 17H24.9707M16.4854 17H8.00005" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h1>Add Session</h1>
+            {% endif %}
+        </div>
     
-        {{ form_start(formNewSession) }}
-    
-            {{ form_row(formNewSession.name) }}
+        <div class="session-form grid grey2-bg sat18">
+            {{ form_start(formNewSession) }}
         
-            {{ form_row(formNewSession.place) }}
+                {{ form_row(formNewSession.name) }}
+                {{ form_row(formNewSession.place) }}
+                {{ form_row(formNewSession.dateStart) }}
+                {{ form_row(formNewSession.dateEnd) }}
+                {{ form_row(formNewSession.teacher) }}
+                {{ form_row(formNewSession.formation) }}
+                <div class="session-form_submit row ">
+                    {{ form_row(formNewSession.submit, {'attr': {'class': 'submit blue-bg sat18'}} ) }}
+                </div>
         
-            {{ form_row(formNewSession.dateStart) }}
-        
-            {{ form_row(formNewSession.dateEnd) }}
-        
-            {{ form_row(formNewSession.teacher) }}
-        
-            {{ form_row(formNewSession.formation) }}
+            {{ form_end(formNewSession, {'render_rest': false}) }}
 
-            {{ form_row(formNewSession.submit) }}
-    
-        {{ form_end(formNewSession, {'render_rest': false}) }}
+        </div>
         
     </div>
 

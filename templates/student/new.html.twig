@@ -35,13 +35,13 @@
 
         <div class="student-form grid grey2-bg sat18">
             {{ form_start(formNewStudent) }}
-                {{ form_row(formNewStudent.firstname, {'attr': {'class': 'column'}} ) }}
-                {{ form_row(formNewStudent.name, {'attr': {'class': 'column'}} ) }}
-                {{ form_row(formNewStudent.gender, {'attr': {'class': 'column'}} ) }}
-                {{ form_row(formNewStudent.dateBirth, {'attr': {'class': 'column'}} ) }}
-                {{ form_row(formNewStudent.city, {'attr': {'class': 'column'}} ) }}
-                {{ form_row(formNewStudent.phone, {'attr': {'class': 'column'}} ) }}
-                {{ form_row(formNewStudent.email, {'attr': {'class': 'column'}} ) }}
+                {{ form_row(formNewStudent.firstname) }}
+                {{ form_row(formNewStudent.name) }}
+                {{ form_row(formNewStudent.gender) }}
+                {{ form_row(formNewStudent.dateBirth) }}
+                {{ form_row(formNewStudent.city) }}
+                {{ form_row(formNewStudent.phone) }}
+                {{ form_row(formNewStudent.email) }}
 
                 <div class="student-form_submit row ">
                     {{ form_row(formNewStudent.submit, {'attr': {'class': 'submit blue-bg sat18'}} ) }}
