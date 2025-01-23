@@ -90,6 +90,26 @@ document.addEventListener('turbo:load', function() {
   }
 });
 
+//  LESSON MODAL HANDLING ______________________________________________________________
+document.addEventListener('turbo:load', function() {
+  // Get relevant elements
+  let modal = document.querySelector("#lesson-modal");
+  let btn = document.querySelector("#add-lesson-button");
+  
+  // Open modal
+  btn.onclick = function() {
+    modal.style.display = "grid";
+    // SET DURATION DYNAMICALLY ??
+  }
+  
+  // Close modal on click outside of modal-content
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+});
+
 // FLASH MESSAGES DISMISS ______________________________________________________________
 document.addEventListener('turbo:load', function() {
   let flashMessage = document.querySelector('.flash');
