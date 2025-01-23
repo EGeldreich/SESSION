@@ -21,11 +21,14 @@ class ProgramType extends AbstractType
         ->add('programs', CollectionType::class, [
             'entry_type' => ProgramLessonType::class,
             'entry_options' => [
-                'nonScheduledLessons' => $options['nonScheduledLessons']
+                'nonScheduledLessons' => $options['nonScheduledLessons'],
+                'label' => false,
             ],
             'allow_add' => true,
             'allow_delete' => false,
             'by_reference' => false,
+            'prototype' => true,
+            
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [

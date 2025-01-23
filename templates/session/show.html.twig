@@ -174,21 +174,26 @@
                 </div>
                 {# FORM USING COLLECTION TYPE #}
                 {{ form_start(formAddLessons, {'attr': {'class': 'modal-container grid sat18'}} ) }}
+                
                     {# Program inputs container #}
                     <div id="lesson-form_container" class="grid">
                         {# One row (one form) #}
-                        {{ form_widget(formAddLessons.programs, {'attr': {'class': 'lesson-form_row row'}} ) }}
+                        {{ form_widget(formAddLessons.programs) }}
                     </div>
-                    {# Btn to add a row ? #}
+
+                    {# Btn to add a row #}
                     <button type="button" class="add-item grey3-bg">
                         <svg width="33" height="34" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect y="0.514648" width="32.9706" height="32.9706" rx="4" fill="var(--grey3)"/>
                             <path d="M16.4854 25.4852V17M16.4854 17V8.51465M16.4854 17H24.9707M16.4854 17H8.00005" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
+                    
+                    {# Submit btn #}
                     <div class="lesson-form_submit row ">
                         {{ form_row(formAddLessons.submit, {'attr': {'class': 'submit blue-bg sat18'}} ) }}
                     </div>
+
                 {{ form_end(formAddLessons) }}
             </div>
         </div>

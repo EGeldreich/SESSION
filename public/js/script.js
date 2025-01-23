@@ -116,7 +116,7 @@ document.addEventListener('turbo:load', function() {
   // Container
   let collectionHolder = document.querySelector('#lesson-form_container');
   console.log(collectionHolder);
-  //
+  // Div with de data-prototype
   let prototypeDiv = document.querySelector('#program_programs');
   // Add a row btn
   let addButton = document.querySelector('.add-item');
@@ -127,15 +127,23 @@ document.addEventListener('turbo:load', function() {
 
   // On btn click, add a new row
   addButton.addEventListener('click', function() {
-      console.log('click');
-      let prototype = prototypeDiv.getAttribute('data-prototype');
-      let newForm = prototype.replace(/__name__/g, index);
-      let newFormElement = document.createElement('div');
 
-      console.log(newForm);
-      newFormElement.classList.add('lesson-form_row');
+    // Get data-prototype value
+      let prototype = prototypeDiv.getAttribute('data-prototype');
+    // Replace __name__ with index to make it unique and easier to handle
+      let newForm = prototype.replace(/__name__/g, index);
+    // Create a new div element and add classes to it
+      let newFormElement = document.createElement('div');
+      newFormElement.classList.add('lesson-form_row', 'grey2-bg');
+
+      //insert prototype HTML into the new div
       newFormElement.innerHTML = newForm;
+      // Append the new div to the collection holder
       collectionHolder.appendChild(newFormElement);
+      // Add classes to a relevant div into the freshly created div
+      let formDiv = newFormElement.querySelector(`#program_programs_${index}`);
+      formDiv.classList.add('lesson-form_entry', 'row');
+      //increment index (to make it unique)
       index++;
   });
 
