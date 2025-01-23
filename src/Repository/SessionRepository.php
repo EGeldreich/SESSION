@@ -50,7 +50,7 @@ class SessionRepository extends ServiceEntityRepository
         $qb->select('l')
             ->from('App\Entity\Lesson', 'l')
             ->leftJoin('l.programs', 'p')
-            ->where('l.id = :id');
+            ->where('p.session = :id');
 
         $sub = $em->createQueryBuilder();
         // select all lessons, minus those already scheduled in the session
