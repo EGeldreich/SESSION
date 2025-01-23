@@ -227,8 +227,10 @@ body {
     & a {
         width: 32px;
         height: 32px;
-        &:hover svg rect {
-            fill: var(--grey2);
+        transition: 0.2s all ease-in-out;
+
+        &:hover {
+            transform: scale(1.1);
         }
     }
 }
@@ -388,6 +390,12 @@ body {
     &  div {
         grid-column: span 5;
         justify-content: space-between;
+        & p:nth-child(1) {
+            flex: 5;
+        }
+        & p:nth-child(2) {
+            flex: 2;
+        }
     }
     & svg {
         margin-right: 16px;
@@ -406,7 +414,7 @@ body {
         margin: 0;
     }
     &:hover {
-        background-color: var(--grey2);
+        background-color: var(--grey1);
     }
 }
 .session-students-h2 {
@@ -429,7 +437,7 @@ body {
         cursor: pointer;
         transition: all 0.2s ease-in-out;
         &:hover {
-            background-color: var(--grey2);
+            background-color: var(--grey1);
         }
     }
     & a {
