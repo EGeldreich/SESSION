@@ -577,13 +577,25 @@ body {
     }
 }
 .lesson-form_row {
-    grid-column: span 5;
+    grid-column: span 7;
     grid-row: span 1;
     border-radius: 8px;
-    padding: 4px 16px;
+    overflow: hidden;
+}
+.remove-btn {
+    width: 10%;
+    height: 100%;
+    justify-content: center;
+    border-left: 2px solid var(--grey1);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        background-color: var(--black);
+    }
 }
 .lesson-form_entry {
     height: 100%;
+    padding-inline: 16px;
     width: 100%;
     gap: 16px;
     align-items: center;

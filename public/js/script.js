@@ -1,28 +1,3 @@
-// document.addEventListener('turbo:load', function() {
-//   const links = document.querySelectorAll('nav a');
-  
-//   console.log(links)
-  
-//   // Récupère l'ID du lien actif depuis localStorage
-//   const activeLinkId = localStorage.getItem('activeLinkId');
-  
-//   if (activeLinkId) {
-//       const activeLink = document.getElementById(activeLinkId);
-//       if (activeLink) {
-//           activeLink.classList.add('active');
-//       }
-//   }
-  
-//   links.forEach(link => {
-//       link.addEventListener('click', function() {
-//           // Enregistre l'ID du lien actif dans localStorage avant de changer de page
-//           localStorage.setItem('activeLinkId', this.id);
-//           window.location.reload()
-//       });
-//   });
-
-// });
-
 // SESSION LIST DISPLAY _________________________________________________________
 document.addEventListener('turbo:load', function() {
   let sessionBtn = document.querySelectorAll('.session-display-btn');
@@ -117,7 +92,7 @@ document.addEventListener('turbo:load', function() {
   let collectionHolder = document.querySelector('#lesson-form_container');
   console.log(collectionHolder);
   // Div with de data-prototype
-  let prototypeDiv = document.querySelector('#program_programs');
+  let prototypeDiv = document.querySelector('#lesson-form_container');
   // Add a row btn
   let addButton = document.querySelector('.add-item');
   console.log(addButton);
@@ -128,29 +103,44 @@ document.addEventListener('turbo:load', function() {
   // On btn click, add a new row
   addButton.addEventListener('click', function() {
 
+    // CREATE NEW FORM ELEMENT AND ADD REMOVE BUTTON EVENT LISTENER
     // Get data-prototype value
       let prototype = prototypeDiv.getAttribute('data-prototype');
     // Replace __name__ with index to make it unique and easier to handle
       let newForm = prototype.replace(/__name__/g, index);
     // Create a new div element and add classes to it
       let newFormElement = document.createElement('div');
-      newFormElement.classList.add('lesson-form_row', 'grey2-bg');
+      newFormElement.classList.add('lesson-form_row', 'grey2-bg', 'row');
 
-      //insert prototype HTML into the new div
+    //insert prototype HTML into the new div
       newFormElement.innerHTML = newForm;
-      // Append the new div to the collection holder
+
+    // Get the remove button
+      let removeBtnTemplate = document.querySelector('#removeBtn-template');
+    // Clone the remove button template
+      let removeBtn = removeBtnTemplate.content.cloneNode(true);
+
+    // Append the btn to the element
+      newFormElement.appendChild(removeBtn);
+      
+      // Append the remove button to the new form element
+      newFormElement.appendChild(removeBtn);
+      
+      // get the newly created btn
+      let removeBtnElement = newFormElement.querySelector('.remove-btn');
+
+      // Add event listener to the remove button
+      removeBtnElement.addEventListener('click', function() {
+        newFormElement.remove();
+      });
+
+    // Append the new div to the collection holder
       collectionHolder.appendChild(newFormElement);
-      // Add classes to a relevant div into the freshly created div
+    // Add classes to a relevant div into the freshly created div
       let formDiv = newFormElement.querySelector(`#program_programs_${index}`);
       formDiv.classList.add('lesson-form_entry', 'row');
-      //increment index (to make it unique)
+    //increment index (to make it unique)
       index++;
-  });
-
-  collectionHolder.addEventListener('click', function(e) {
-      if (e.target.classList.contains('remove-item')) {
-          e.target.closest('div').remove();
-      }
   });
 });
 

@@ -174,13 +174,19 @@
                 </div>
                 {# FORM USING COLLECTION TYPE #}
                 {{ form_start(formAddLessons, {'attr': {'class': 'modal-container grid sat18'}} ) }}
-                
-                    {# Program inputs container #}
-                    <div id="lesson-form_container" class="grid">
-                        {# One row (one form) #}
-                        {{ form_widget(formAddLessons.programs) }}
-                    </div>
 
+                    {# Program inputs container and prototype holder #}
+                    <div id="lesson-form_container" class="grid"
+                    data-prototype="{{ form_widget(formAddLessons.programs.vars.prototype)|e('html_attr') }}">
+                        {% for lessonForm in formAddLessons.programs %}
+                            <div class="lesson-form_entry_container">
+                                {# One row (one form) #}
+                                {{ form_row(lessonForm.lesson) }}
+                                {{ form_row(lessonForm.duration) }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
                     {# Btn to add a row #}
                     <button type="button" class="add-item grey3-bg">
                         <svg width="33" height="34" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -194,9 +200,16 @@
                         {{ form_row(formAddLessons.submit, {'attr': {'class': 'submit blue-bg sat18'}} ) }}
                     </div>
 
-                {{ form_end(formAddLessons) }}
+                {{ form_end(formAddLessons, {render_rest: false}) }}
             </div>
         </div>
         
     </div>
+    <template id='removeBtn-template'>
+        <button type="button" class="remove-btn grey3-bg">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 13L7.00002 7.00002M7.00002 7.00002L1 1M7.00002 7.00002L13 1M7.00002 7.00002L1 13" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </template>
 {% endblock %}
