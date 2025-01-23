@@ -123,6 +123,24 @@ final class SessionController extends AbstractController
         $formAddLessons->handleRequest($request);
         if ($formAddLessons->isSubmitted() && $formAddLessons->isValid()) {
             $programs = $formAddLessons->getData()['programs'];
+
+            // Check for duplicate entries
+            // create empty array
+            $lessons = [];
+            foreach ($programs as $program) {
+                // get lesson id
+                $lessonId = $program->getLesson()->getId();
+                // check if lesson id is in array
+                if (in_array($lessonId, $lessons)) {
+                    // if it is, duplicate entry, redirect
+                    $this->addFlash('error', 'You tried to add the same lesson twice.');
+                    return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
+                }
+                // if not, put the id in the array
+                $lessons[] = $lessonId;
+                // loop to check each id
+            }
+
             foreach($programs as $program){
                 $program->setSession($session);
                 $entityManager->persist($program);
