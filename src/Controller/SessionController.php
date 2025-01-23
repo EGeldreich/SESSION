@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Program;
 use App\Entity\Session;
 use App\Entity\Student;
 use App\Form\ProgramType;
@@ -35,7 +36,9 @@ final class SessionController extends AbstractController
 
     #[Route('/session/new', name: 'new_session')]
     #[Route('/session/{id}/edit', name: 'edit_session')]
-    public function new_edit(Session $session = null, Request $request, EntityManagerInterface $entityManager): Response
+    public function new_edit(Session $session = null,
+    Request $request,
+    EntityManagerInterface $entityManager): Response
     {
         if(!$session){
             $session = new Session();
@@ -62,7 +65,8 @@ final class SessionController extends AbstractController
     }
 
     #[Route('/session/{id}/delete', name: 'delete_session')]
-    public function delete(Session $session, EntityManagerInterface $entityManager)
+    public function delete(Session $session,
+    EntityManagerInterface $entityManager)
     {
         $entityManager->remove($session);
         $entityManager->flush();
@@ -70,8 +74,39 @@ final class SessionController extends AbstractController
         return $this->redirectToRoute('app_session');
     }
 
+    // #[Route('/session/{id}/addLessons', name: 'add_lessons')]
+    // public function addLesson(int $sessionId, Request $request, EntityManagerInterface $entityManager): Response
+    // {
+    //     // $lessons = $request->request->all('lessons', []);
+    //     $session = $entityManager->getRepository(Session::class)->find($sessionId);
+
+    //     if (!$session) {
+    //         $this->addFlash('error', 'No session found for id.');
+    //         return $this->redirectToRoute('app_session');
+    //     }
+
+    //     $form = $this->createForm(ProgramType::class, $session);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $entityManager->persist($session);
+    //         $entityManager->flush();
+
+    //         $this->addFlash('success', 'Lessons added successfully.');
+
+    //         return $this->redirectToRoute('show_session', ['id' => $sessionId]);
+    //     }
+
+    //     return $this->render('session/add_lesson.html.twig', [
+    //         'form' => $form->createView(),
+    //     ]);
+    // }
+
     #[Route('/session/{id}', name: 'show_session')]
-    public function show(Session $session = null, SessionRepository $sr): Response
+    public function show(Session $session = null,
+    SessionRepository $sr,
+    Request $request,
+    EntityManagerInterface $entityManager): Response
     {
         if(!$session){
             return $this->redirectToRoute('app_session');
@@ -79,10 +114,30 @@ final class SessionController extends AbstractController
 
         $nonRegisteredStudents = $sr->findNonRegisteredStudents($session->getId());
         $nonScheduledLessons = $sr->findNonScheduledLessons($session->getId());
+
+        // Form to add lessons to session
+        $formAddLessons = $this->createForm(ProgramType::class, null, [
+            'nonScheduledLessons' => $nonScheduledLessons,
+        ]);
+
+        $formAddLessons->handleRequest($request);
+        if ($formAddLessons->isSubmitted() && $formAddLessons->isValid()) {
+            $programs = $formAddLessons->getData()['programs'];
+            foreach($programs as $program){
+                $program->setSession($session);
+                $entityManager->persist($program);
+            }
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Lesson added successfully.');
+            return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
+        }
+
         return $this->render('session/show.html.twig', [
             'session' => $session,
             'nonRegisteredStudents' => $nonRegisteredStudents,
             'nonScheduledLessons' => $nonScheduledLessons,
+            'formAddLessons' => $formAddLessons->createView(),
         ]);
     }
 

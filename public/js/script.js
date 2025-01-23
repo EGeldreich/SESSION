@@ -110,6 +110,42 @@ document.addEventListener('turbo:load', function() {
   }
 });
 
+// COLLECTION TYPE HANDLING ______________________________________________________________
+document.addEventListener('turbo:load', function() {
+  // Get relevant elements
+  // Container
+  let collectionHolder = document.querySelector('#lesson-form_container');
+  console.log(collectionHolder);
+  //
+  let prototypeDiv = document.querySelector('#program_programs');
+  // Add a row btn
+  let addButton = document.querySelector('.add-item');
+  console.log(addButton);
+  // index ?
+  let index = collectionHolder.querySelectorAll('div').length;
+  console.log(index);
+
+  // On btn click, add a new row
+  addButton.addEventListener('click', function() {
+      console.log('click');
+      let prototype = prototypeDiv.getAttribute('data-prototype');
+      let newForm = prototype.replace(/__name__/g, index);
+      let newFormElement = document.createElement('div');
+
+      console.log(newForm);
+      newFormElement.classList.add('lesson-form_row');
+      newFormElement.innerHTML = newForm;
+      collectionHolder.appendChild(newFormElement);
+      index++;
+  });
+
+  collectionHolder.addEventListener('click', function(e) {
+      if (e.target.classList.contains('remove-item')) {
+          e.target.closest('div').remove();
+      }
+  });
+});
+
 // FLASH MESSAGES DISMISS ______________________________________________________________
 document.addEventListener('turbo:load', function() {
   let flashMessage = document.querySelector('.flash');

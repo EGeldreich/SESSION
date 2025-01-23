@@ -17,6 +17,33 @@ class ProgramType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $builder
+        ->add('programs', CollectionType::class, [
+            'entry_type' => ProgramLessonType::class,
+            'entry_options' => [
+                'nonScheduledLessons' => $options['nonScheduledLessons']
+            ],
+            'allow_add' => true,
+            'allow_delete' => false,
+            'by_reference' => false,
+            ])
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+            ]
+            ])
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => null,
+        ]);
+        
+        $resolver->setRequired(['nonScheduledLessons']);
+    }
+}
+        
         // $builder
         //     ->add('duration', NumberType::class, [
         //         'attr' => [
@@ -47,26 +74,3 @@ class ProgramType extends AbstractType
         //         ]
         //     ])
         // ;
-        $builder
-            ->add('lessons', CollectionType::class, [
-                'entry_type' => LessonType::class,
-                'entry_options' => ['label' => false],
-                'allow_add' => true,
-                'allow_delete' => false,
-                'by_reference' => false,
-            ])
-            ->add('submit', SubmitType::class, [
-                'attr' => [
-                    'class' => 'submit-btn'
-                ]
-            ])
-        ;
-    }
-
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => Program::class,
-        ]);
-    }
-}
