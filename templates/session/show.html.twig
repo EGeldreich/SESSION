@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+    <script src="{{ asset('js/sessionStudents.js') }}" defer></script>
+    <script src="{{ asset('js/sessionLessons.js') }}" defer></script>
+{% endblock %}
+
 {% block title %}{{ session }}{% endblock %}
+
 
 {% block body %}
     <div class="breadcrumb">
@@ -199,6 +205,8 @@
                     <div class="lesson-form_submit row ">
                         {{ form_row(formAddLessons.submit, {'attr': {'class': 'submit blue-bg sat18'}} ) }}
                     </div>
+
+                    {{ form_rest(formAddLessons) }}
                 {{ form_end(formAddLessons) }}
             </div>
         </div>
