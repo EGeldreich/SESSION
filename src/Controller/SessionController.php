@@ -147,15 +147,20 @@ final class SessionController extends AbstractController
             }
             $entityManager->flush();
 
-            $this->addFlash('success', 'Lesson added successfully.');
+            $this->addFlash('success', 'Lessons added successfully.');
             return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
+        } else {
+            // Affichez les erreurs de formulaire
+            foreach ($formAddLessons->getErrors(true) as $error) {
+                $this->addFlash('error', $error->getMessage());
+            }
         }
 
         return $this->render('session/show.html.twig', [
             'session' => $session,
             'nonRegisteredStudents' => $nonRegisteredStudents,
             'nonScheduledLessons' => $nonScheduledLessons,
-            'formAddLessons' => $formAddLessons->createView(),
+            'formAddLessons' => $formAddLessons,
         ]);
     }
 
