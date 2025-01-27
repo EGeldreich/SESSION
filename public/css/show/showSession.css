@@ -98,51 +98,6 @@
     }
 }
 
-/* ADD FORM ______________________________________________________ */
-/* GENERAL / STUDENT */
-.student-form,
-.session-form {
-    grid-column: 1 / -2;
-    grid-row: 2 / span 7;
-    border-radius: 16px;
-    padding: 80px;
-
-    & form {
-        grid-column: 1 / -1;
-        grid-row: 1 / -1;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(auto-fill, 64px);
-        column-gap: 96px;
-        row-gap: 16px;
-    }
-
-    & div {
-        grid-column: span 1;
-        grid-row: span 1;
-
-        & input, select {
-            width: 100%;
-            height: 32px;
-            border-radius: 4px;
-            padding-left: 16px;
-            background-color: var(--grey3);
-            line-height: 32px;
-        }
-
-    }
-    & .student-form_submit,
-    .session-form_submit {
-        grid-column: span 2;
-        grid-row: -1 / span 1;
-        justify-content: center;
-    }
-}
-/* SESSION */
-.session-form {
-    grid-row: 2 / span 6;
-}
-
 /* MODAL ____________________________________________________________________________________________________ */
 .modal {
     display: none;

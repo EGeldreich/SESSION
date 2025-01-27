@@ -100,7 +100,7 @@ class Session
 
     public function getDateStartFormat(): string
     {
-        return $this->dateStart->format('d-m-Y');
+        return $this->dateStart->format('Y-m-d');
     }
 
     public function setDateStart(\DateTimeInterface $dateStart): static
@@ -117,7 +117,7 @@ class Session
 
     public function getDateEndFormat(): string
     {
-        return $this->dateEnd->format('d-m-Y');
+        return $this->dateEnd->format('Y-m-d');
     }
 
     public function setDateEnd(\DateTimeInterface $dateEnd): static

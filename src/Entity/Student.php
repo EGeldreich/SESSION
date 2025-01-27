@@ -84,7 +84,7 @@ class Student
 
     public function getDateBirthFormat(): string
     {
-        return $this->dateBirth->format('d-m-Y');
+        return $this->dateBirth->format('Y-m-d');
     }
 
     public function setDateBirth(\DateTimeInterface $dateBirth): static
