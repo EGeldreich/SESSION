@@ -45,6 +45,8 @@ class SessionRepository extends ServiceEntityRepository
         $em = $this->getEntityManager();
         $sub = $em->createQueryBuilder();
 
+        $formation = $this->find($session_id)->getFormation();
+
         $qb = $sub;
         // select all lessons already scheduled in a session
         $qb->select('l')
@@ -56,8 +58,11 @@ class SessionRepository extends ServiceEntityRepository
         // select all lessons, minus those already scheduled in the session
         $sub->select('le')
             ->from('App\Entity\Lesson', 'le')
-            ->where($sub->expr()->notIn('le.id', $qb->getDQL()))
+            ->setParameter('formation', $formation)
+            ->andWhere($sub->expr()->notIn('le.id', $qb->getDQL()))
+            ->andWhere('le.category = :formation')
             ->setParameter('id', $session_id)
+            ->setParameter('formation', $formation)
             ->orderBy('le.name', 'ASC');
         
         $query = $sub->getQuery();
