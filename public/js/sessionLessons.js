@@ -32,10 +32,8 @@ console.log(addButton);
 let index = collectionHolder.querySelectorAll('div').length;
 console.log(index);
 
-// On btn click, add a new row
-addButton.addEventListener('click', function() {
-
-    // CREATE NEW FORM ELEMENT AND ADD REMOVE BUTTON EVENT LISTENER
+// CREATE NEW FORM ELEMENT AND ADD REMOVE BUTTON EVENT LISTENER
+function addFormEntry() {
     // Get data-prototype value
     let prototype = prototypeDiv.getAttribute('data-prototype');
     // Replace __name__ with index to make it unique and easier to handle
@@ -73,4 +71,9 @@ addButton.addEventListener('click', function() {
     formDiv.classList.add('lesson-form_entry', 'row');
     //increment index (to make it unique)
     index++;
-});
+}
+
+// On btn click, add a new row
+addButton.addEventListener('click', addFormEntry);
+
+addFormEntry();
