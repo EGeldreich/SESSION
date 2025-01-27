@@ -144,7 +144,9 @@
                     </p>
                 </div>
 
-                <form class="modal-container grid" action={{ path('add_students', {'sessionId': session.id})}} method="POST">
+                <input class="student-searchbar" type="text" placeholder="Search..">
+
+                <form class="modal-container modal-container_student grid" action={{ path('add_students', {'sessionId': session.id})}} method="POST">
                     {% for student in nonRegisteredStudents %}
                         <input class="student-modal_checkbox" type="checkbox" name="student_ids[]" value="{{ student.id }}" id="{{ student.id }}" />
                         <label for={{ student.id }} class="student-modal_card column grey3-bg sat18">

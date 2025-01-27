@@ -379,7 +379,6 @@ body {
             background-color: var(--grey3);
             line-height: 32px;
         }
-
     }
     & .student-form_submit,
     .session-form_submit {
