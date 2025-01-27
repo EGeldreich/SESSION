@@ -28,6 +28,7 @@ class ProgramType extends AbstractType
             'allow_delete' => true,
             'by_reference' => false,
             'prototype' => true,
+            'label' => false,
             
             ])
             ->add('submit', SubmitType::class, [

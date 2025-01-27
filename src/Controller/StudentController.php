@@ -68,13 +68,16 @@ final class StudentController extends AbstractController
 
     // REMOVE FROM SESSION
     #[Route('/student/{id}/remove/{sessionId}', name: 'remove_student')]
-    public function remove(Student $student = null, int $sessionId, EntityManagerInterface $entityManager, Request $request): Response
+    public function remove(Student $student = null,
+    int $sessionId,
+    EntityManagerInterface $entityManager,
+    Request $request): Response
     {
         if ($student) {
             $session = $entityManager->getRepository(Session::class)->find($sessionId);
             if ($session) {
-            $session->removeStudent($student);
-            $entityManager->persist($session);
+                $session->removeStudent($student);
+                $entityManager->persist($session);
                 $entityManager->flush();
                 }
             }

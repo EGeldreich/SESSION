@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/show/showSession.css')}}">
+{% endblock %}
+
 {% block javascripts %}
     <script src="{{ asset('js/sessionStudents.js') }}" defer></script>
     <script src="{{ asset('js/sessionLessons.js') }}" defer></script>
@@ -62,25 +66,32 @@
     
         <div class="session-info_lessons grid">
             {% for program in session.programs %}
-            <div class="grey3-bg row">
-                <p>
-                    {{ program.lesson }}
-                </p>
-                {% if program.duration > 1 %}
-                    <p class="row">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 5V10H15M10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10C19 14.9706 14.9706 19 10 19Z" stroke="var(--grey4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        {{ program.duration }} days
+            <div class="session-lesson-card grey3-bg row">
+                <div class="session-lesson-card_info row">
+                    <p>
+                        {{ program.lesson }}
                     </p>
-                    {% else %}
-                    <p class="row">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 5V10H15M10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10C19 14.9706 14.9706 19 10 19Z" stroke="var(--grey4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        {{ program.duration }} day
-                    </p>
-                {% endif %}
+                    {% if program.duration > 1 %}
+                        <p class="row">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 5V10H15M10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10C19 14.9706 14.9706 19 10 19Z" stroke="var(--grey4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            {{ program.duration }} days
+                        </p>
+                        {% else %}
+                        <p class="row">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 5V10H15M10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10C19 14.9706 14.9706 19 10 19Z" stroke="var(--grey4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            {{ program.duration }} day
+                        </p>
+                    {% endif %}
+                </div>
+                <a class="session-lesson-card_remove grey2-bg row" href={{ path('remove_lesson', {'id': program.id, 'sessionId': session.id}) }}>
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 13L7.00002 7.00002M7.00002 7.00002L1 1M7.00002 7.00002L13 1M7.00002 7.00002L1 13" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
             </div>
             {% endfor %}
             <button id="add-lesson-button" class="grey2-bg">

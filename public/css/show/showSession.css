@@ -1,0 +1,263 @@
+/* SESSION */
+.session-info_lessons {
+    grid-column: 6 / -1;
+    grid-row: 2 / span 4;
+
+    & .session-lesson-card {
+        grid-column: span 5;
+        grid-row: span 1;
+        border-radius: 16px;
+        overflow: hidden;
+    }
+    & .session-lesson-card_info {
+        padding: 0 24px;
+        width: 88%;
+        height: 100%;
+        border-right: 2px solid var(--black);
+        align-items: center;
+        & p:nth-child(1) {
+            flex: 7;
+        }
+        & p:nth-child(2) {
+            align-items: center;
+            flex: 3;
+        }
+        & svg {
+            margin-right: 16px;
+        }
+    }
+    & .session-lesson-card_remove {
+        align-items: center;
+        justify-content: center;
+        width: 12%;
+        height: 100%;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+            background-color: var(--grey1);
+        }
+    }
+}
+#add-lesson-button {
+    grid-column: span 1;
+    grid-row: span 1;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    & svg {
+        margin: 0;
+    }
+    &:hover {
+        background-color: var(--grey1);
+    }
+}
+.session-students-h2 {
+    grid-column: 1 / span 5;
+    grid-row: 6;
+    align-self: self-end;
+}
+.session-student-container {
+    grid-column: 1 / -1;
+    grid-row: 7 / -1;
+}
+.session-student-card {
+    grid-column: span 4;
+    grid-row: span 1;
+    border-radius: 16px;
+    overflow: hidden;
+    
+    &#add-student-button {
+        grid-column: span 1;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+            background-color: var(--grey1);
+        }
+    }
+    & a {
+        align-items: center;
+    }
+    & .session-student-card_student {
+        padding: 0 24px;
+        width: 85%;
+        height: 100%;
+        justify-content: space-between;
+        border-right: 2px solid var(--black);
+        transition: all 0.2s ease-in-out;
+        &:hover {
+            background-color: var(--grey1);
+        }
+    }
+    & .session-student-card_remove {
+        width: 15%;
+        height: 100%;
+        justify-content: center;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+            background-color: var(--grey1);
+        }
+    }
+}
+
+/* ADD FORM ______________________________________________________ */
+/* GENERAL / STUDENT */
+.student-form,
+.session-form {
+    grid-column: 1 / -2;
+    grid-row: 2 / span 7;
+    border-radius: 16px;
+    padding: 80px;
+
+    & form {
+        grid-column: 1 / -1;
+        grid-row: 1 / -1;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(auto-fill, 64px);
+        column-gap: 96px;
+        row-gap: 16px;
+    }
+
+    & div {
+        grid-column: span 1;
+        grid-row: span 1;
+
+        & input, select {
+            width: 100%;
+            height: 32px;
+            border-radius: 4px;
+            padding-left: 16px;
+            background-color: var(--grey3);
+            line-height: 32px;
+        }
+
+    }
+    & .student-form_submit,
+    .session-form_submit {
+        grid-column: span 2;
+        grid-row: -1 / span 1;
+        justify-content: center;
+    }
+}
+/* SESSION */
+.session-form {
+    grid-row: 2 / span 6;
+}
+
+/* MODAL ____________________________________________________________________________________________________ */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+    grid-column: 5 / -2;
+    grid-row: 3 / -2;
+    border-radius: 16px;
+}
+.modal-title {
+    grid-column:  2 / -2;
+    grid-row: 1;
+    align-self: center;
+    align-items: center;
+    justify-content: space-between;
+    & div {
+        gap: 24px;
+    }
+}
+.modal-container {
+    grid-column:  2 / -1;
+    grid-row: 2 / -2;
+}
+/* STUDENT MODAL */
+.student-modal_card {
+    padding: 6px;
+    grid-column: span 2;
+    grid-row: span 1;
+    border-radius: 16px;
+    align-items: center;
+    justify-content: space-around;
+    overflow: hidden;
+    cursor: pointer;
+    &:hover {
+        background-color: var(--grey2);
+    }
+}
+.student-modal_checkbox {
+    display: none;
+}
+.student-modal_checkbox:checked + .student-modal_card {
+    background-color: var(--black);
+}
+.student-modal_submit {
+    padding: 8px 16px;
+    grid-column: -5 / span 3;
+    grid-row: -1 / span 1;
+}
+/* LESSON MODAL */
+#lesson-form_container {
+    grid-column: 1 / -2;
+    grid-row: 1 / -1;
+}
+#program_programs {
+    display: none;
+}
+.add-item {
+    grid-column: 1 / span 1;
+    grid-row: -1 /span 1;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+.lesson-form_row {
+    grid-column: span 7;
+    grid-row: span 1;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.remove-btn {
+    width: 10%;
+    height: 100%;
+    justify-content: center;
+    border-left: 2px solid var(--grey1);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+        background-color: var(--black);
+    }
+}
+.lesson-form_entry {
+    height: 100%;
+    padding-inline: 16px;
+    width: 100%;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-evenly;
+    
+    & input, select {
+        width: 100%;
+        height: 24px;
+        border-radius: 4px;
+        padding-left: 16px;
+        background-color: var(--grey3);
+        line-height: 32px;
+    }
+    & div:nth-child(1) {
+        flex: 3;
+    }
+    & div:nth-child(2) {
+        flex: 2;
+    }
+}
+.lesson-form_submit {
+    grid-column: -4 / span 2;
+    grid-row: -1 / span 1;
+}

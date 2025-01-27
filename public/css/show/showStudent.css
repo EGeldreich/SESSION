@@ -1,0 +1,14 @@
+/* STUDENT */
+.student-h2 {
+    grid-column: 1 / -1;
+    grid-row: 6;
+    align-self: self-end;
+}
+.student-noSession {
+    grid-column: 1 / -1;
+    grid-row: 1;
+}
+.student-session-container {
+    grid-column: 1 / -1;
+    grid-row: 7 / -1;
+}

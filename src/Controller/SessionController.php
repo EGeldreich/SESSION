@@ -74,33 +74,23 @@ final class SessionController extends AbstractController
         return $this->redirectToRoute('app_session');
     }
 
-    // #[Route('/session/{id}/addLessons', name: 'add_lessons')]
-    // public function addLesson(int $sessionId, Request $request, EntityManagerInterface $entityManager): Response
-    // {
-    //     // $lessons = $request->request->all('lessons', []);
-    //     $session = $entityManager->getRepository(Session::class)->find($sessionId);
+    
+    #[Route('/program/{id}/remove/{sessionId}', name: 'remove_lesson')]
+    public function removeLesson(Program $program = null,
+    int $sessionId,
+    EntityManagerInterface $entityManager,
+    Request $request): Response
+    {
+        if ($program) {
+            $session = $entityManager->getRepository(Session::class)->find($sessionId);
+            if ($session) {
+                $entityManager->remove($program);
+                $entityManager->flush();
+                }
+            }
+        return $this->redirectToRoute('show_session', ['id' => $sessionId]);
+    }
 
-    //     if (!$session) {
-    //         $this->addFlash('error', 'No session found for id.');
-    //         return $this->redirectToRoute('app_session');
-    //     }
-
-    //     $form = $this->createForm(ProgramType::class, $session);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $entityManager->persist($session);
-    //         $entityManager->flush();
-
-    //         $this->addFlash('success', 'Lessons added successfully.');
-
-    //         return $this->redirectToRoute('show_session', ['id' => $sessionId]);
-    //     }
-
-    //     return $this->render('session/add_lesson.html.twig', [
-    //         'form' => $form->createView(),
-    //     ]);
-    // }
 
     #[Route('/session/{id}', name: 'show_session')]
     public function show(Session $session = null,
