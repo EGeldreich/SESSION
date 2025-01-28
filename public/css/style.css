@@ -351,7 +351,8 @@ body {
 /* ADD FORM ______________________________________________________ */
 /* GENERAL / STUDENT */
 .student-form,
-.session-form {
+.session-form,
+.register-form {
     grid-column: 1 / -2;
     grid-row: 2 / span 7;
     border-radius: 16px;
@@ -380,8 +381,7 @@ body {
             line-height: 32px;
         }
     }
-    & .student-form_submit,
-    .session-form_submit {
+    & .classic-form_submit {
         grid-column: span 2;
         grid-row: -1 / span 1;
         justify-content: center;
@@ -390,6 +390,29 @@ body {
 /* SESSION */
 .session-form {
     grid-row: 2 / span 6;
+}
+/* REGISTER */
+.register-form {
+    grid-column: 1 / span 6;
+    & form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    & .register-form_fields {
+        gap: 16px;
+    }
+    & .terms div {
+        display: flex;
+        align-items: center;
+        & input {
+            width: 25%;
+            height: 16px;
+        }
+    }
+    & .classic-form_submit {
+        justify-content: center;
+    }
 }
 
 /* UTILITIES END */

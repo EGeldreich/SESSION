@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <div class="breadcrumb">
+        <p class="row">
+            <a href="{{ path('app_home')}}">Dashboard</a>&nbsp;><span class="blue">Register</span>
+        </p>
+    </div>
+
+    <div class="content-container grid">
+
+        <div class="page-title row">
+            <svg width="33" height="34" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect y="0.514648" width="32.9706" height="32.9706" rx="4" fill="var(--grey1)"/>
+                <path d="M16.4854 25.4852V17M16.4854 17V8.51465M16.4854 17H24.9707M16.4854 17H8.00005" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h1>Register</h1>
+        </div>
+
+        <div class="register-form grid grey2-bg sat18">
+            {{ form_errors(registrationForm) }}
+            {{ form_start(registrationForm) }}
+                <div class="register-form_fields column">
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.plainPassword, {
+                        label: 'Password'
+                    }) }}
+                    <div class="terms">
+                        {{ form_row(registrationForm.agreeTerms) }}
+                    </div>
+                </div>
+
+                <div class="classic-form_submit row">
+                    <button type="submit" class="submit blue-bg sat18">Register</button>
+                </div>
+            {{ form_end(registrationForm) }}
+        </div>
+
+    </div>
+    
+
+{% endblock %}

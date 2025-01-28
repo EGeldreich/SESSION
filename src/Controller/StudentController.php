@@ -84,24 +84,13 @@ final class StudentController extends AbstractController
         return $this->redirectToRoute('show_session', ['id' => $sessionId]);
     }
 
-    // ADD TO SESSION
-    // #[Route('/student/{id}/add/{sessionId}', name: 'add_student')]
-    // public function add(Student $student = null, int $sessionId, EntityManagerInterface $entityManager, Request $request): Response
-    // {
-    //     if ($student) {
-    //         $session = $entityManager->getRepository(Session::class)->find($sessionId);
-    //         if ($session) {
-    //         $session->addStudent($student);
-    //         $entityManager->persist($session);
-    //             $entityManager->flush();
-    //             }
-    //         }
-    //     return $this->redirectToRoute('show_session', ['id' => $sessionId]);
-    // }
 
     // ADD MULTIPLE TO SESSION
     #[Route('/student/addMultiple/{sessionId}', name: 'add_students')]
-    public function addMultiple(int $sessionId, EntityManagerInterface $entityManager, Request $request, SessionInterface $si): Response
+    public function addMultiple(int $sessionId,
+    EntityManagerInterface $entityManager,
+    Request $request,
+    SessionInterface $si): Response
     {
         $studentIds = $request->request->all('student_ids', []);
         $session = $entityManager->getRepository(Session::class)->find($sessionId);
