@@ -16,6 +16,38 @@ class StudentRepository extends ServiceEntityRepository
         parent::__construct($registry, Student::class);
     }
 
+    public function findStudents(int $session_id, string $query): array
+    {
+        $em = $this->getEntityManager();
+        $sub = $em->createQueryBuilder();
+
+        $qb = $sub;
+        // select all students already registered in a session
+        $qb->select('s')
+            ->from('App\Entity\Student', 's')
+            ->leftJoin('s.sessions', 'se')
+            ->where('se.id = :id');
+
+        $sub = $em->createQueryBuilder();
+        // Select students related to query input, minus those already registered in the session
+        $sub->select('st')
+            ->from('App\Entity\Student', 'st')
+            ->where(
+                $qb->expr()->orX(
+                    $qb->expr()->like('st.firstname', ':query'),
+                    $qb->expr()->like('st.name', ':query'),
+                    $qb->expr()->like('st.city', ':query'),
+                )
+            )
+            ->setParameter('query', '%' . $query . '%')
+            ->andWhere($sub->expr()->notIn('st.id', $qb->getDQL()))
+            ->setParameter('id', $session_id)
+            ->orderBy('st.name', 'ASC');
+
+        $query = $sub->getQuery();
+        return $query->getResult();
+    }
+
     //    /**
     //     * @return Student[] Returns an array of Student objects
     //     */

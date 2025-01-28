@@ -13,6 +13,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class SessionController extends AbstractController
@@ -91,12 +93,12 @@ final class SessionController extends AbstractController
         return $this->redirectToRoute('show_session', ['id' => $sessionId]);
     }
 
-
     #[Route('/session/{id}', name: 'show_session')]
     public function show(Session $session = null,
     SessionRepository $sr,
     Request $request,
-    EntityManagerInterface $entityManager): Response
+    EntityManagerInterface $entityManager,
+    SessionInterface $si): Response
     {
         if(!$session){
             return $this->redirectToRoute('app_session');
@@ -104,6 +106,14 @@ final class SessionController extends AbstractController
 
         $nonRegisteredStudents = $sr->findNonRegisteredStudents($session->getId());
         $nonScheduledLessons = $sr->findNonScheduledLessons($session->getId());
+
+        // Get SearchResult from session, or null if not set
+        $searchResult = $si->get('searchResult', null);
+        // Clean session
+        $si->remove('searchResult');
+
+        // Define modalOpen default state
+        $modalOpen = !empty($searchResult);
 
         // Form to add lessons to session
         $formAddLessons = $this->createForm(ProgramType::class, null, [
@@ -151,6 +161,8 @@ final class SessionController extends AbstractController
             'nonRegisteredStudents' => $nonRegisteredStudents,
             'nonScheduledLessons' => $nonScheduledLessons,
             'formAddLessons' => $formAddLessons,
+            'searchResult' => $searchResult,
+            'modalOpen' => $modalOpen,
         ]);
     }
 

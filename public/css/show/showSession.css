@@ -130,9 +130,11 @@
     grid-row: 2 / -2;
 }
 /* STUDENT MODAL */
-.student-searchbar {
+.search-form {
     grid-column: 2 / span 3;
     grid-row: 2;
+}
+.student-searchbar {
     width: 100%;
     height: 32px;
     border-radius: 4px;

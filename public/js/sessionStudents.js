@@ -3,6 +3,12 @@
 let studentModal = document.querySelector("#student-modal");
 let studentBtn = document.querySelector("#add-student-button");
 
+if(studentModal.classList.contains('open')){
+    console.log('hey');
+    studentModal.style.display = "grid";
+}
+console.log(studentModal.classList.contains('open'));
+
 // Open modal
 studentBtn.onclick = function() {
     studentModal.style.display = "grid";

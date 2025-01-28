@@ -6,7 +6,6 @@
     // Open modal
     lessonBtn.onclick = function() {
         lessonModal.style.display = "grid";
-        // SET DURATION DYNAMICALLY ??
     }
 
     // Close modal on click outside of modal-content
