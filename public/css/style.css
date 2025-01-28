@@ -352,7 +352,8 @@ body {
 /* GENERAL / STUDENT */
 .student-form,
 .session-form,
-.register-form {
+.register-form,
+.login-form {
     grid-column: 1 / -2;
     grid-row: 2 / span 7;
     border-radius: 16px;
@@ -400,6 +401,31 @@ body {
         justify-content: space-between;
     }
     & .register-form_fields {
+        gap: 16px;
+    }
+    & .terms div {
+        display: flex;
+        align-items: center;
+        & input {
+            width: 25%;
+            height: 16px;
+        }
+    }
+    & .classic-form_submit {
+        justify-content: center;
+    }
+}
+/* LOGIN */
+.login-form {
+    grid-column: 1 / span 6;
+    grid-row: 2 /span 5;
+    & form {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    & .login-form_fields {
         gap: 16px;
     }
     & .terms div {

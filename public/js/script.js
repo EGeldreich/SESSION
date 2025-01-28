@@ -1,5 +1,5 @@
 // FLASH MESSAGES DISMISS ______________________________________________________________
-// document.addEventListener('turbo:load', function() {
+document.addEventListener('turbo:load', function() {
   let flashMessage = document.querySelector('.flash');
 
   if (flashMessage) {
@@ -14,4 +14,4 @@
 
     }, 3000);
   }
-// });
+});
