@@ -208,6 +208,29 @@ class Session
         return $this;
     }
 
+    public function getWorkingDays(): int
+    {
+        if (!defined('SATURDAY')) define('SATURDAY', 6);
+        if (!defined('SUNDAY')) define('SUNDAY', 0);
+        $holidays = ['01-01', '05-01', '05-08', '07-14', '08-15', '11-11', '12-25'];
+
+        $start = $this->dateStart;
+        $end = $this->dateEnd;
+        $workdays = 0;
+
+        $current = clone $start;
+        while ($current <= $end) {
+            $day = (int) $current->format('w');  // 0=sun, 1=mon, ..., 6=sat
+            $mmgg = $current->format('m-d');
+            if ($day != SUNDAY && !in_array($mmgg, $holidays) && $day != SATURDAY) {
+                $workdays++;
+            }
+            $current->modify('+1 day');
+        }
+
+        return $workdays;
+    }
+
     public function __toString():string
     {
         return $this->name;

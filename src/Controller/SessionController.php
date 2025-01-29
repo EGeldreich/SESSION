@@ -8,6 +8,7 @@ use App\Entity\Student;
 use App\Form\ProgramType;
 use App\Form\SessionType;
 use Doctrine\ORM\EntityManager;
+use App\Service\LessonValidator;
 use App\Repository\SessionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -98,7 +99,8 @@ final class SessionController extends AbstractController
     SessionRepository $sr,
     Request $request,
     EntityManagerInterface $entityManager,
-    SessionInterface $si): Response
+    SessionInterface $si,
+    LessonValidator $lessonValidator): Response
     {
         if(!$session){
             $this->addFlash('error', 'You tried to reach a non-existing session.');
@@ -125,21 +127,10 @@ final class SessionController extends AbstractController
         if ($formAddLessons->isSubmitted() && $formAddLessons->isValid()) {
             $programs = $formAddLessons->getData()['programs'];
 
-            // Check for duplicate entries
-            // create empty array
-            $lessons = [];
-            foreach ($programs as $program) {
-                // get lesson id
-                $lessonId = $program->getLesson()->getId();
-                // check if lesson id is in array
-                if (in_array($lessonId, $lessons)) {
-                    // if it is, duplicate entry, redirect
-                    $this->addFlash('error', 'You tried to add the same lesson twice.');
-                    return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
-                }
-                // if not, put the id in the array
-                $lessons[] = $lessonId;
-                // loop to check each id
+            // Use Service to check validity
+            if (!$lessonValidator->validateLessons($session, $programs)) {
+                $this->addFlash('error', 'Duplicate entry, or duration too high.');
+                return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
             }
 
             foreach($programs as $program){
