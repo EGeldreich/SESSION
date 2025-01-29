@@ -101,6 +101,7 @@ final class SessionController extends AbstractController
     SessionInterface $si): Response
     {
         if(!$session){
+            $this->addFlash('error', 'You tried to reach a non-existing session.');
             return $this->redirectToRoute('app_session');
         }
 

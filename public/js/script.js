@@ -1,7 +1,7 @@
 // FLASH MESSAGES DISMISS ______________________________________________________________
-document.addEventListener('turbo:load', function() {
+// document.addEventListener('turbo:load', function() {
   let flashMessage = document.querySelector('.flash');
-
+  console.log(flashMessage);
   if (flashMessage) {
     // Wait 2 seconds before fading out
     setTimeout(() => {
@@ -14,4 +14,4 @@ document.addEventListener('turbo:load', function() {
 
     }, 3000);
   }
-});
+// });
