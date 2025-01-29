@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ student }}_SessionPlanner_PDF</title>
+        <style>
+            section {
+                width: 100%;
+                padding: 16px;
+                border-top: 1px solid black;
+            }
+            table {
+                width: 100%;
+            }
+            table, th, td {
+                border: 1px solid black;
+            }
+            #info p {
+                line-height: 8px;
+            }
+            header {
+                width: 100%;
+            }
+            h2 {
+                font-size: 16px;
+                text-align: right;
+                margin-bottom: 16px;
+            }
+            caption {
+                margin-bottom: 8px;
+            }
+        </style>
+    </head>
+    <header>
+        <h2>SessionPlanner</h2>
+        <h1>{{ student.firstname }} {{ student }}</h1>
+    </header>
+    <body>
+        <section id="info">
+            <h3>Informations</h3>
+            <p>Phone: {{ student.phone }}</p>
+            <p>Email: {{ student.email }}</p>
+            <p>City: {{ student.city }}</p>
+            <p>Gender: {{ student.gender }}</p>
+            <p>Name: {{ student }}</p>
+            <p>Firstname: {{ student.firstname }}</p>
+            <p>Birthdate: {{ student.dateBirthFormat }}</p>
+            <p>Age: {{ student.age }}</p>
+        </section>
+        <section>
+            {% if finishedSessions|length > 0 %}
+                <table>
+                    <caption>Finished Sessions</caption>
+                    <thead>
+                        <tr>
+                            <th>Session name</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for session in finishedSessions %}
+                            <tr>
+                                <td>{{ session }}</td>
+                                <td>{{ session.dateStartFormat }}</td>
+                                <td>{{ session.dateEndFormat }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p>No finished session</p>
+            {% endif %}
+        </section>
+        <section>
+            {% if ongoingSessions|length > 0 %}
+                <table>
+                    <caption>Ongoing Sessions</caption>
+                    <thead>
+                        <tr>
+                            <th>Session name</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for session in ongoingSessions %}
+                            <tr>
+                                <td>{{ session }}</td>
+                                <td>{{ session.dateStartFormat }}</td>
+                                <td>{{ session.dateEndFormat }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p>No ongoing session</p>
+            {% endif %}
+        </section>
+        <section>
+            {% if futureSessions|length > 0 %}
+                <table>
+                    <caption>Future Sessions</caption>
+                    <thead>
+                        <tr>
+                            <th>Session name</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for session in futureSessions %}
+                            <tr>
+                                <td>{{ session }}</td>
+                                <td>{{ session.dateStartFormat }}</td>
+                                <td>{{ session.dateEndFormat }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p>No future session</p>
+            {% endif %}
+        </section>
+    </body>
+</html>
+
+
